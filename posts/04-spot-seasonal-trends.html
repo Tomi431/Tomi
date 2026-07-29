@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP — Amazon Seller MCP Playbook</title>
+<meta name="description" content="Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP — agent-agnostic MCP playbook for Amazon sellers.">
+<meta name="keywords" content="MCP, Amazon sellers, seasonal trends, AI agents">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-bg: #eff6ff;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: var(--hero-grad);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .meta {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+.hero .meta span { margin: 0 8px; }
+.back {
+  display: inline-block;
+  margin: 24px 0 0;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.back:hover { background: rgba(255,255,255,0.25); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.body p {
+  margin-bottom: 18px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 36px 0 14px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--fg);
+}
+.body ul, .body ol {
+  margin: 0 0 18px 24px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #be185d;
+}
+.body pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.body pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 13px;
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0f172a;
+}
+.body figure.shot img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.body figure.shot figcaption {
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.cta a:hover { opacity: 0.9; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.cta-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+footer {
+  margin-top: 48px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .nav { margin-bottom: 8px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .container { padding: 36px 16px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="icon">📈</span>
+  <div class="num">PLAYBOOK 04</div>
+  <h1>Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP</h1>
+  <div class="meta">
+    <span>Seasonal trends</span> · <span>7 min read</span>
+  </div>
+  <a href="../index.html" class="back">← Back to all 7 playbooks</a>
+</div>
+
+<div class="container">
+  <div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="Claude Code running sorftime-seller-agent — Hidden Profit Index analysis" loading="lazy"><figcaption>Real Claude Code session running sorftime-seller-agent against Amazon US kitchen storage. Hidden Profit Index call returns top picks, profit estimates, and risk flags in one round trip.</figcaption></figure>
+<p>Every seasonal selling cycle presents the same two-sided dilemma. Order inventory too early and capital sits frozen in a warehouse for months, accruing storage fees while the calendar crawls toward peak demand. Order too late and the window closes before the shipment clears customs — competitors who timed it right capture the surge, and the seller is left holding stock that arrives just as demand collapses.</p>
+<p>The difference between these two outcomes is rarely about luck. It is about visibility. Sellers who get seasonal timing right are not guessing better; they are watching the right data earlier, and they are watching it continuously, not in a single planning spreadsheet assembled in April and never revisited.</p>
+<h2>The Data That Predicts a Season</h2>
+<p>A seasonal trend does not announce itself with a calendar notification. It builds gradually across multiple signals, each of which is visible weeks or months before the sales curve turns upward.</p>
+<p>Search volume for category-defining keywords begins rising before purchase volume follows. Competitor inventory levels for seasonal variants — holiday-themed packaging, summer-specific materials, gift-ready bundles — start shifting as experienced sellers position early. New listing velocity in a seasonal subcategory accelerates two to three months before peak, as sellers who spotted the trend early rush to claim shelf space. Price compression in previously stable ASINs signals that supply is expanding ahead of demand.</p>
+<p>Each of these signals is individually subtle. A 5% week-over-week search volume increase is easy to dismiss as noise. A single new competitor entering a category is unremarkable. But when search volume is rising across five related keywords, three new sellers have entered in the past month, and average price has drifted down 8% from six months ago, the pattern is unambiguous. The season is coming, and the sellers who recognize the shift earliest capture the best positioning.</p>
+<p>The challenge is not that this data is unavailable. It is that pulling it manually — logging into multiple dashboards, exporting separate reports for each signal, cross-referencing dates and metrics across different tools — takes hours per category per week. For a seller monitoring seasonal patterns across six categories, this becomes a full-time job that nobody has time to do.</p>
+<h2>What Changes With an MCP-Connected Agent</h2>
+<p>The Model Context Protocol (MCP) lets an AI agent connect directly to structured marketplace data sources. Instead of a human navigating dashboards and exporting reports, the agent retrieves data programmatically, compares it across time periods, and surfaces patterns that would take hours to assemble manually.</p>
+<p>The sorftime-seller-agent is an open-source MCP server that gives any MCP-compatible agent access to marketplace intelligence — product data, keyword trends, category dynamics, and competitor metrics across major e-commerce platforms. Once configured, a single natural-language question can trigger a multi-signal seasonal analysis that runs in seconds.</p>
+<p>Consider a seller preparing for the holiday gift season on Amazon US. The manual approach: open the keyword research tool, pull 12-month search trends for 15 gift-category keywords, export each to CSV, open the category analysis tool, pull listing velocity and average price for the target subcategory, export again, merge everything in a spreadsheet, and attempt to read the pattern across disconnected tables. Realistically, this happens once, maybe twice, before the season. It does not happen every week as conditions shift.</p>
+<p>With an MCP-connected agent, the analysis becomes a query that runs on demand:</p>
+<p>&gt; &quot;Compare search volume trends for the top 10 gift-category keywords across Q3 and Q4 of last year versus this year. Identify which keywords are showing earlier acceleration this year. Cross-reference with new listing velocity in the corresponding subcategories. Flag any subcategory where new listings are entering faster than last year but average price has not yet started declining.&quot;</p>
+<p>The agent calls the relevant endpoints — keyword trend, category overview, product listing — retrieves structured data from each, and returns a synthesized analysis. The round trip completes in seconds. The data is live, not a snapshot from whenever the CSV was last exported. The cross-referencing is programmatic, not a chain of VLOOKUPs that breaks when column headers shift.</p>
+<p>Here is what configuring the agent looks like. Drop this into the MCP settings for Claude, Cursor, Codex, or any compatible client:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;sorftime-seller-agent&quot;: {
+      &quot;command&quot;: &quot;python3&quot;,
+      &quot;args&quot;: [&quot;-m&quot;, &quot;sorftime_seller_agent&quot;],
+      &quot;env&quot;: {
+        &quot;SORFTIME_API_KEY&quot;: &quot;your-api-key&quot;
+      }
+    }
+  }
+}</code></pre>
+<p>Once connected, the agent can run seasonal scans like this:</p>
+<pre><code class="language-python"># A seasonal readiness scan — run this weekly starting 12 weeks before peak
+scan_prompt = &quot;&quot;&quot;
+For Amazon US, analyze the following seasonal readiness signals
+across the Kitchen &amp; Dining gift subcategories:
+
+1. Keyword search volume: pull 90-day trends for the top 15 gift-adjacent
+   keywords. Flag any keyword where the current week&#x27;s volume exceeds the
+   12-week trailing average by more than 20%.
+
+2. New listing velocity: count new ASINs added to each subcategory in the
+   past 30 days. Compare to the same period last year.
+
+3. Price trend: compute average price across the top 50 listings for each
+   subcategory. Flag any subcategory where price has declined more than
+   5% over 60 days (supply expanding ahead of demand).
+
+4. Review velocity on seasonal variants: identify listings with seasonal
+   keywords in their titles that launched in the past 60 days. Flag any
+   that have accumulated more than 30 reviews already (early entrants
+   gaining traction).
+
+Return a ranked watchlist of subcategories by seasonal acceleration
+score, with supporting data for each signal.
+&quot;&quot;&quot;</code></pre>
+<p>The output is not a data dump. It is a prioritized watchlist with specific subcategories ranked by how strongly seasonal patterns are materializing, backed by the underlying metrics. The seller reads the analysis, applies judgment about which categories match their sourcing capabilities and risk tolerance, and makes a decision. The agent handled the retrieval, comparison, and pattern detection. The human handled the decision.</p>
+<h2>From Annual Ritual to Weekly Discipline</h2>
+<p>The architecture shift matters beyond any single query. When seasonal analysis requires three hours of manual data work per category, it becomes an annual ritual — done once during planning season and then abandoned as daily operations consume all available attention. This means the seller operates on a seasonal forecast that might be four months old by the time orders need to be placed. Conditions that changed in week six do not surface until the post-season retrospective, when the lesson is learned but the window is gone.</p>
+<p>When the same analysis runs as a prompt through an MCP-connected agent, it becomes a weekly discipline. The cost drops from three hours to thirty seconds. That changes the feasible frequency from once per season to once per week, or even daily as peak approaches. A price compression signal detected in week two of the build-up, rather than week eight, shifts the sourcing strategy before capital is committed. A search volume acceleration detected three weeks earlier than last year moves the entire timeline forward.</p>
+<p>This is not about replacing judgment with automation. It is about giving judgment better data, more frequently, at lower cost. The seller still decides when to order, what to order, and how much. The difference is that those decisions are informed by current signals rather than a frozen snapshot.</p>
+<h2>Getting Started</h2>
+<p>sorftime-seller-agent is open-source and free to use. It connects to marketplace data across major global platforms and works with any MCP-compatible AI agent.</p>
+<pre><code>git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>Register for API access at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>.</p>
+<hr>
+
+<div class="cta">
+  <div class="cta-title">Run this playbook in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup, no credit card.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav"><a href="../posts/03-calculate-amazon-profit.html" style="margin-right: 16px;">← Previous</a><a href="../posts/06-mine-amazon-reviews.html">Next →</a></div>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automating Amazon PPC Decisions With MCP and AI Agents — Amazon Seller MCP Playbook</title>
+<meta name="description" content="Automating Amazon PPC Decisions With MCP and AI Agents — agent-agnostic MCP playbook for Amazon sellers.">
+<meta name="keywords" content="MCP, Amazon sellers, ppc automation, AI agents">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-bg: #eff6ff;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: var(--hero-grad);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .meta {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+.hero .meta span { margin: 0 8px; }
+.back {
+  display: inline-block;
+  margin: 24px 0 0;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.back:hover { background: rgba(255,255,255,0.25); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.body p {
+  margin-bottom: 18px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 36px 0 14px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--fg);
+}
+.body ul, .body ol {
+  margin: 0 0 18px 24px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #be185d;
+}
+.body pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.body pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 13px;
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0f172a;
+}
+.body figure.shot img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.body figure.shot figcaption {
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.cta a:hover { opacity: 0.9; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.cta-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+footer {
+  margin-top: 48px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .nav { margin-bottom: 8px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .container { padding: 36px 16px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="icon">🎯</span>
+  <div class="num">PLAYBOOK 07</div>
+  <h1>Automating Amazon PPC Decisions With MCP and AI Agents</h1>
+  <div class="meta">
+    <span>PPC automation</span> · <span>7 min read</span>
+  </div>
+  <a href="../index.html" class="back">← Back to all 7 playbooks</a>
+</div>
+
+<div class="container">
+  <div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="Claude Code running sorftime-seller-agent — Hidden Profit Index analysis" loading="lazy"><figcaption>Real Claude Code session running sorftime-seller-agent against Amazon US kitchen storage. Hidden Profit Index call returns top picks, profit estimates, and risk flags in one round trip.</figcaption></figure>
+<p>You&#x27;re staring at your campaign manager. ACOS is climbing on three campaigns. You need to adjust bids on 47 keywords. This used to take all afternoon.</p>
+<p>For every keyword, the same mental math: compare spend against conversions, check the target ACOS, decide whether to raise or lower the bid, repeat. Forty-seven times. Then do it again next week when the data shifts.</p>
+<p>The bottleneck is not the decision logic. A seller knows the rules: if ACOS exceeds 30 percent on a keyword with more than 20 dollars in spend and zero orders, pause it. If a keyword converts at half the target ACOS with consistent impression share, raise the bid. The bottleneck is executing those rules across dozens or hundreds of keywords, every time the numbers change.</p>
+<p>This article covers a practical approach: wiring those decision rules into an AI agent through the Model Context Protocol, so bid adjustments happen programmatically instead of manually.</p>
+<h2>The Bid Management Trap</h2>
+<p>Amazon PPC is a game of thresholds. Every keyword sits somewhere on a spectrum between &quot;winning&quot; and &quot;bleeding.&quot; The seller&#x27;s job is to push the performing ones and cut the losing ones. The problem is that the number of decisions compounds with every campaign, ad group, and keyword added.</p>
+<p>A seller running three campaigns with 15 target keywords each faces roughly 45 individual bid decisions per review cycle. A mid-size seller managing eight campaigns with broad, phrase, and exact match groups can easily hit 200 keywords. At 60 seconds per keyword — open the console, check the metrics, adjust the bid, confirm — that is over three hours of clicking.</p>
+<p>Most sellers respond by cutting corners: adjust only the keywords that look obviously broken, skip the search term report because exporting and cross-referencing takes another hour. The campaigns drift. Spend accumulates on terms that stopped converting weeks ago.</p>
+<p>The data changes faster than the review cycle. A keyword profitable on Tuesday can bleed by Thursday if a competitor raises a bid or seasonal demand shifts the conversion rate. Weekly manual reviews are always a few days behind reality.</p>
+<h2>Where AI Agents Add Leverage</h2>
+<p>An AI agent connected to live PPC data through MCP does not get tired after scanning 50 keywords. It does not skip the search term report because it is tedious. It applies the same decision rules to keyword 1 and keyword 200 with identical consistency.</p>
+<p>The workflow shifts from manual execution to rule definition. The seller defines the thresholds: target ACOS, maximum spend with zero conversions before pausing, bid adjustment percentages by performance tier. The agent reads the data, applies the rules, and produces a decision table. The seller reviews and approves.</p>
+<p>This is not about replacing seller judgment. It is about moving the seller&#x27;s role from data operator to decision reviewer. The seller still sets the thresholds and decides what qualifies as a winning keyword. The agent handles the reading, the math, and the typing.</p>
+<h2>A Working Example</h2>
+<p>With the sorftime-seller-agent MCP server connected to an AI agent, the workflow becomes a prompt. Here is what the setup and interaction look like:</p>
+<pre><code class="language-bash"># Clone and install the MCP server
+git clone https://github.com/DannylydST/sorftime-seller-agent
+cd sorftime-seller-agent
+python3 scripts/install.py
+
+# Add to your AI agent&#x27;s MCP configuration. For Claude Code, add to
+# ~/.claude/mcp.json or your project&#x27;s .mcp.json:
+# {
+#   &quot;mcpServers&quot;: {
+#     &quot;sorftime-seller-agent&quot;: {
+#       &quot;command&quot;: &quot;python3&quot;,
+#       &quot;args&quot;: [&quot;-m&quot;, &quot;sorftime_seller_agent&quot;],
+#       &quot;env&quot;: {
+#         &quot;SORFTIME_API_KEY&quot;: &quot;your-key-here&quot;
+#       }
+#     }
+#   }
+# }
+
+# Example prompt once MCP is connected:
+# &quot;Pull keyword performance for campaign &#x27;Main-US-SB&#x27; for the last 14 days.
+#  Apply these decision rules:
+#  1. Pause any keyword with &gt;$15 spend and zero attributed orders.
+#  2. Reduce bid by 25% for keywords with ACOS above 35%.
+#  3. Increase bid by 15% for keywords with ACOS below 15% and impression share under 40%.
+#  4. Flag keywords where competitor B0XYZ123 outranks us.
+#  Output a decision table with current bid, recommended bid, and reason.&quot;</code></pre>
+<p>The agent retrieves the keyword performance data, applies each rule in sequence, and returns a structured decision table. A typical output looks like this:</p>
+<pre><code>Keyword                     Spend   Orders  ACOS   Cur Bid  Rec Bid  Action
+--------------------------  ------  -------  -----  -------  -------  ----------------------
+stainless steel bottle 32oz $38.20   0       100%   $1.20    $0.00    Pause — no conversions
+insulated water bottle gym  $22.50   1        72%   $0.95    $0.71    Reduce 25% — ACOS &gt; 35%
+metal bottle leak proof     $14.80   3        19%   $0.85    $0.98    Increase 15% — low ACOS
+BPA free steel bottle       $31.40   1        88%   $1.10    $0.83    Reduce 25% — ACOS &gt; 35%
+water bottle hiking         $8.90    2        11%   $0.65    $0.75    Increase 15% — low ACOS
+
+Competitor (B0XYZ123) outranks on:
+- stainless steel bottle 32oz: our pos 8, competitor pos 3
+- BPA free steel bottle: our pos 11, competitor pos 4</code></pre>
+<p>The entire cycle — from asking the question to having a ranked list of decisions — takes under two minutes. The same manual process across 47 keywords would take 45 to 60 minutes.</p>
+<h2>Decision Rules That Scale</h2>
+<p>The real power comes from saving these rules as reusable templates. Instead of retyping the thresholds every time, the seller maintains a decision playbook: a set of rules the agent applies to any campaign, any keyword set, any date range.</p>
+<p>A practical starting playbook might include:</p>
+<ul>
+<li><strong>Pause threshold</strong>: spend above 15 dollars, zero attributed orders, 14-day window.</li>
+<li><strong>Reduce threshold</strong>: ACOS above 30 percent with at least 10 dollars in spend.</li>
+<li><strong>Increase threshold</strong>: ACOS below 15 percent, impression share below 40 percent, at least 3 attributed orders.</li>
+<li><strong>New keyword discovery</strong>: identify search terms from the search term report that convert above 5 percent but have no active bid — add to campaign with a starting bid at the low end of the suggested range.</li>
+</ul>
+<p>These rules can be passed to the agent as part of a recurring prompt. The agent is scheduled to run every morning or every Monday. The seller opens the output, skims the decision table, approves the changes, and moves on. The campaigns stay within guardrails without requiring hours of manual monitoring.</p>
+<p>The rules also accumulate. A seller who notices a pattern — keywords with high spend and exactly one order are usually accidents, not trends — can add that as a new rule. Over time, the playbook reflects actual campaign experience rather than generic best practices.</p>
+<h2>Beyond Bid Adjustments</h2>
+<p>The same MCP connection supports decision workflows beyond keyword bid management. A few examples that follow the same pattern of rules-based automation:</p>
+<ul>
+<li><strong>Budget allocation across campaigns</strong>: the agent compares campaign-level ACOS and conversion data, then recommends rebalancing daily budgets from underperforming campaigns to overperforming ones.</li>
+<li><strong>Negative keyword harvesting</strong>: the agent scans the search term report for terms that generate clicks but never convert, flags them as negative keyword candidates, and drafts the list for review.</li>
+<li><strong>Placement bid modifiers</strong>: the agent analyzes performance by placement (top of search, product pages, rest of search) and suggests bid modifier adjustments based on where conversions actually happen.</li>
+<li><strong>Seasonal bid scaling</strong>: a rule bookmarked for Q4 that raises all bid ceilings by 20 percent during the holiday window, then reverts them in January.</li>
+</ul>
+<p>Each of these follows the same architecture: the seller defines the rules, the MCP server provides the data, the AI agent applies the logic, and the output is a reviewable decision table.</p>
+<h2>What the AI Does Not Do</h2>
+<p>A line worth drawing. The AI agent does not decide what a good ACOS target is. It does not know whether raising bids during a competitor&#x27;s stockout is strategic or wasteful. It cannot judge whether a keyword converts poorly because the listing needs work or because the keyword intent is wrong.</p>
+<p>The agent is a rule executor, not a strategist. The seller&#x27;s role is to set the thresholds, define the logic, and make the final call on every recommendation. The automation handles the part that does not require judgment: reading thousands of data points, doing the same arithmetic 200 times, and formatting the results. The seller handles the part that does.</p>
+<h2>Getting Started</h2>
+<p>The sorftime-seller-agent MCP server is open source and free to use. It runs locally, so campaign data and API keys stay on the seller&#x27;s machine. It works with any MCP-compatible AI agent — Claude Code, Cursor, Continue, and others.</p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>A free account at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a> provides API access for marketplace intelligence. The MCP server ships with documentation for every available endpoint, plus example prompts for PPC management, keyword research, and competitor tracking.</p>
+<p>Forty-seven keywords do not need to take all afternoon. Define the rules once. Let the agent do the reading and the math. Keep the decisions where they belong — with the seller who understands the business.</p>
+<hr>
+
+<div class="cta">
+  <div class="cta-title">Run this playbook in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup, no credit card.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav"><a href="../posts/06-mine-amazon-reviews.html" style="margin-right: 16px;">← Previous</a></div>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+
+</body>
+</html>

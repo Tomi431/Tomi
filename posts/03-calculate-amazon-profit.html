@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculate Amazon Profit in Seconds -- Not Hours -- With Your AI Agent — Amazon Seller MCP Playbook</title>
+<meta name="description" content="Calculate Amazon Profit in Seconds -- Not Hours -- With Your AI Agent — agent-agnostic MCP playbook for Amazon sellers.">
+<meta name="keywords" content="MCP, Amazon sellers, profit, AI agents">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-bg: #eff6ff;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: var(--hero-grad);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .meta {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+.hero .meta span { margin: 0 8px; }
+.back {
+  display: inline-block;
+  margin: 24px 0 0;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.back:hover { background: rgba(255,255,255,0.25); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.body p {
+  margin-bottom: 18px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 36px 0 14px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--fg);
+}
+.body ul, .body ol {
+  margin: 0 0 18px 24px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #be185d;
+}
+.body pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.body pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 13px;
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0f172a;
+}
+.body figure.shot img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.body figure.shot figcaption {
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.cta a:hover { opacity: 0.9; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.cta-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+footer {
+  margin-top: 48px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .nav { margin-bottom: 8px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .container { padding: 36px 16px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="icon">💰</span>
+  <div class="num">PLAYBOOK 03</div>
+  <h1>Calculate Amazon Profit in Seconds -- Not Hours -- With Your AI Agent</h1>
+  <div class="meta">
+    <span>Profit</span> · <span>6 min read</span>
+  </div>
+  <a href="../index.html" class="back">← Back to all 7 playbooks</a>
+</div>
+
+<div class="container">
+  <div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="Claude Code running sorftime-seller-agent — Hidden Profit Index analysis" loading="lazy"><figcaption>Real Claude Code session running sorftime-seller-agent against Amazon US kitchen storage. Hidden Profit Index call returns top picks, profit estimates, and risk flags in one round trip.</figcaption></figure>
+<p>You found a product. Now you need to calculate FBA fees, shipping, referral fees, cost of goods, and break-even. You open a spreadsheet.</p>
+<p>First, you look up the FBA fee schedule for the product&#x27;s size tier. You check whether it falls into small standard, large standard, or oversize — and which sub-tier within each. You dig up the referral fee percentage for the category. You pull a shipping rate from your freight forwarder&#x27;s last email. You estimate packaging cost, inbound placement fees, and storage fees if the product is seasonal. You type each number into a cell, write a formula, and stare at the result.</p>
+<p>Then you change the price by two dollars and do it again.</p>
+<p>Then you wonder what happens if the landed cost goes up 12%. Then you check a different weight estimate. Then you realize you forgot the returns cost. You update the formula. It is now forty-five minutes later, and you have analyzed one product.</p>
+<p>This workflow is universal among Amazon sellers. It is also slow, error-prone, and the single largest bottleneck between having an idea and acting on it.</p>
+<h2>What Makes Amazon Profit Math Complicated</h2>
+<p>Amazon profit calculation is not a single formula. It is a chain of interdependent estimates that change with product dimensions, category, fulfillment method, and season.</p>
+<p>The minimum inputs for a reliable per-unit profit estimate include:</p>
+<ul>
+<li><strong>Referral fee</strong>: 8% to 45% depending on category, with per-item minimums that can dominate low-ASP products</li>
+<li><strong>FBA fulfillment fee</strong>: Determined by size tier, dimensional weight, and shipping weight — a product that is one inch over a tier boundary can see fulfillment costs jump</li>
+<li><strong>Inbound shipping</strong>: Freight costs from supplier to FBA, allocated per unit</li>
+<li><strong>Storage fees</strong>: Monthly inventory storage, with sharply higher rates during Q4</li>
+<li><strong>Cost of goods</strong>: Landed cost including manufacturing, inspection, and import duties</li>
+<li><strong>Returns cost</strong>: Average return rate for the category, multiplied by the cost of processing a return (shipping, disposal, or restocking)</li>
+<li><strong>PPC allocation</strong>: If advertising is part of the launch, the per-unit ad cost affects true net margin</li>
+</ul>
+<p>Getting these numbers right requires cross-referencing the FBA revenue calculator, a freight quote, a duty rate table, and your supplier invoice — for every product, at every price point you are considering.</p>
+<h2>An AI Agent That Does the Arithmetic</h2>
+<p>The sorftime-seller-agent is an open-source MCP (Model Context Protocol) tool that connects any compatible AI agent to marketplace data and profit analysis. You install it once, and your AI agent gains the ability to call structured analysis functions — including a profit calculator that pulls live fee data, not stale spreadsheet estimates.</p>
+<p>Here is what asking for a profit analysis looks like. You are evaluating a kitchen gadget priced at $24.99:</p>
+<pre><code>I am evaluating a product on Amazon US. Calculate the unit economics:
+
+- Selling price: $24.99
+- Cost of goods (landed): $6.80
+- Product weight: 0.8 lbs
+- Dimensions: 9.4 x 6.2 x 2.1 inches
+- Category: Kitchen &amp; Dining
+- Estimated monthly returns: 4%
+- Inbound shipping per unit: $0.45
+- Target monthly volume: 300 units
+
+Give me per-unit breakdown: referral fee, FBA fee, storage estimate, net profit, and margin.
+Then show breakeven volume at this price point and a sensitivity table at $22.99 and $27.99.</code></pre>
+<p>Your AI agent calls the relevant tools — <code>product_profit_calculator</code> for FBA fee estimates based on the actual size tier, referral fee by category, and storage fee modeling — and returns a structured breakdown in under 30 seconds.</p>
+<p>Contrast this with the spreadsheet workflow. In the time it takes to manually calculate one product at one price, the AI agent can run a full sensitivity analysis across multiple price points, weight scenarios, and volume assumptions. The arithmetic is the same either way. The difference is who does the lookup, the formula-writing, and the re-checking.</p>
+<h2>Beyond the Single-Product Calculation</h2>
+<p>The real power of having profit analysis connected to an AI agent is that you can ask follow-up questions the way you would with an analyst on your team:</p>
+<ul>
+<li>&quot;Run the same numbers but assume I ship by sea instead of air — how does margin change?&quot;</li>
+<li>&quot;Compare this product&#x27;s unit economics against the top 3 competing ASINs in the same category.&quot;</li>
+<li>&quot;What price band has the highest net margin when you factor in the FBA fee tier boundaries for this product&#x27;s dimensions?&quot;</li>
+<li>&quot;Calculate the monthly profit projection for 6 months, factoring in Q4 storage fee increases and a conservative 15% monthly sales ramp.&quot;</li>
+</ul>
+<p>Each of these questions would require rebuilding a spreadsheet from scratch. With the MCP tools connected, each one is a sentence in a conversation.</p>
+<h2>Setting It Up</h2>
+<p>The install is one command:</p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>The installer sets up a Python virtual environment, pulls dependencies, and configures your AI agent to discover the MCP tools automatically. You need a free Sorftime account at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a> for the API key. No credit card required.</p>
+<p>Once installed, restart your AI agent and ask your first profit question. The tools are available to Claude Code, Codex CLI, Cursor, and any other MCP-compatible agent.</p>
+<h2>What It Does Not Do</h2>
+<p>The profit calculator provides estimates based on published FBA fee schedules, standard referral fee rates, and user-supplied inputs. It does not guarantee that your actual fees will match the estimate exactly — dimensional tier assignments can change when Amazon measures your product at the fulfillment center, and storage fee surcharges depend on actual inventory turnover.</p>
+<p>It does not predict sales volume, forecast demand, or tell you whether a product is a good investment. It does the arithmetic so you can focus on the judgment.</p>
+<p>Profit analysis is probabilistic, not deterministic. The tool makes the probabilities visible faster than a spreadsheet can. What you do with them is your call.</p>
+<hr>
+<p><strong>Try it yourself.</strong></p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>Free API key at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>. Then ask your AI agent: &quot;Calculate the profit for a product in my category at my target price.&quot; The arithmetic is ready. The next question is yours.</p>
+<hr>
+<p><em>Published: 2026-07-27 | Sorftime International Blog</em></p>
+<hr>
+
+<div class="cta">
+  <div class="cta-title">Run this playbook in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup, no credit card.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav"><a href="../posts/02-no-terminal-mcp.html" style="margin-right: 16px;">← Previous</a><a href="../posts/04-spot-seasonal-trends.html">Next →</a></div>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automating Weekly Product Research With Claude and MCP — Amazon Seller MCP Playbook</title>
+<meta name="description" content="Automating Weekly Product Research With Claude and MCP — agent-agnostic MCP playbook for Amazon sellers.">
+<meta name="keywords" content="MCP, Amazon sellers, product research, AI agents">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-bg: #eff6ff;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: var(--hero-grad);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .meta {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+.hero .meta span { margin: 0 8px; }
+.back {
+  display: inline-block;
+  margin: 24px 0 0;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.back:hover { background: rgba(255,255,255,0.25); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.body p {
+  margin-bottom: 18px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 36px 0 14px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--fg);
+}
+.body ul, .body ol {
+  margin: 0 0 18px 24px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #be185d;
+}
+.body pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.body pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 13px;
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0f172a;
+}
+.body figure.shot img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.body figure.shot figcaption {
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.cta a:hover { opacity: 0.9; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.cta-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+footer {
+  margin-top: 48px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .nav { margin-bottom: 8px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .container { padding: 36px 16px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="icon">📊</span>
+  <div class="num">PLAYBOOK 01</div>
+  <h1>Automating Weekly Product Research With Claude and MCP</h1>
+  <div class="meta">
+    <span>Product research</span> · <span>8 min read</span>
+  </div>
+  <a href="../index.html" class="back">← Back to all 7 playbooks</a>
+</div>
+
+<div class="container">
+  <div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="Claude Code running sorftime-seller-agent — Hidden Profit Index analysis" loading="lazy"><figcaption>Real Claude Code session running sorftime-seller-agent against Amazon US kitchen storage. Hidden Profit Index call returns top picks, profit estimates, and risk flags in one round trip.</figcaption></figure>
+<p>Every Monday you open 4 tools, run the same queries, compile the same spreadsheet. You have been doing this for years. What if your AI did it for you in 30 seconds?</p>
+<p>That is the promise of connecting Claude to live marketplace data through MCP — the Model Context Protocol. Instead of logging into multiple dashboards, exporting CSV files, and stitching together a market picture by hand, you ask Claude one question and get a structured answer backed by real-time data. No switching tabs. No copy-paste. No pivot tables at 8 AM.</p>
+<p>This article walks through how it works, what you can build with it, and how to set it up in under five minutes using the open-source <code>sorftime-seller-agent</code> MCP server.</p>
+<h2>The Weekly Research Routine, Deconstructed</h2>
+<p>Ask any marketplace seller what Monday morning looks like and the pattern is nearly identical across categories, revenue levels, and platforms. The player changes — Amazon, Walmart, TikTok Shop, Shopee — but the choreography does not.</p>
+<p>Typical weekly research checklist:</p>
+<p>1. Open the keyword tracker. Check which search terms shifted rank, which ones gained volume, which ones lost traction.</p>
+<p>2. Open the competitor monitor. Scan for price changes, new listings, inventory signals, review velocity shifts.</p>
+<p>3. Open the category dashboard. Look for new entrants, BSR movement, seasonal trend lines.</p>
+<p>4. Open the profit calculator. Update cost inputs, check margin compression, flag SKUs that crossed below threshold.</p>
+<p>5. Combine everything into a spreadsheet. Color-code the rows. Write a summary for the team.</p>
+<p>Each step is 5 to 15 minutes of clicking through filters, date ranges, and export buttons. The cognitive load is not the analysis — the analysis takes 30 seconds once the data is in one place. The load is the <em>assembly</em>. Assembling data from fragmented tools is where the hours disappear.</p>
+<h2>What Happens When MCP Replaces the Assembly</h2>
+<p>MCP lets Claude talk directly to external data sources as if they were built-in functions. Instead of you reading a dashboard and telling Claude what you saw, Claude reads the data itself and answers your question.</p>
+<p>Here is a concrete example. You type this prompt into Claude after connecting <code>sorftime-seller-agent</code>:</p>
+<p>&gt; &quot;Check my tracked ASINs on Amazon US. Which competitors dropped price by more than 5 percent this week? Which keywords moved more than 10 positions? Flag any product with margin below 15 percent after fee changes. Output a table sorted by urgency.&quot;</p>
+<p>Claude calls the relevant MCP tools — fetching product details, keyword rankings, fee estimates — combines the results, and returns a formatted table. Total time: roughly 30 seconds. The same analysis done manually: 45 minutes minimum, spread across three browser tabs and a spreadsheet.</p>
+<p>The difference is not speed alone. It is that the bottleneck moves from data collection to decision-making. You stop being a human ETL pipeline and start being a strategist again.</p>
+<h2>What sorftime-seller-agent Provides</h2>
+<p><code>sorftime-seller-agent</code> is an open-source MCP server that exposes marketplace intelligence as tools Claude can call. It covers over 130 endpoints across Amazon, Walmart, TikTok Shop, Shopee, Temu, and 1688.</p>
+<p>Here is what Claude can do once the server is connected:</p>
+<ul>
+<li>Read real-time product data: price, BSR, ratings, review count, inventory signals, buy box status.</li>
+<li>Track keyword rankings across time periods and detect movement patterns.</li>
+<li>Pull category-level data: bestseller lists, new releases, Movers and Shakers.</li>
+<li>Calculate profit estimates with configurable cost inputs (COGS, FBA fees, referral fees, shipping).</li>
+<li>Monitor competitor catalogs for new ASIN launches, price changes, and review velocity shifts.</li>
+<li>Cross-reference data across platforms in a single query.</li>
+</ul>
+<p>Each capability is a discrete tool in the MCP server. Claude decides which tools to call based on your question. You do not need to know the endpoint names or parameter formats — Claude handles that automatically.</p>
+<h2>Setting It Up</h2>
+<p>The setup is three steps and takes under five minutes. You need Python 3.10 or later and a Claude client that supports MCP (Claude Desktop, Claude Code, or any MCP-compatible client).</p>
+<p>### Step 1: Clone and Install</p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent
+cd sorftime-seller-agent
+python3 scripts/install.py</code></pre>
+<p>The install script sets up a Python virtual environment, installs dependencies, and generates a starter configuration file.</p>
+<p>### Step 2: Configure Your MCP Client</p>
+<p>Add the server to your Claude client&#x27;s MCP configuration. For Claude Desktop, edit <code>claude_desktop_config.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;sorftime-seller-agent&quot;: {
+      &quot;command&quot;: &quot;python3&quot;,
+      &quot;args&quot;: [&quot;-m&quot;, &quot;sorftime_seller_agent&quot;],
+      &quot;env&quot;: {
+        &quot;SORFTIME_API_KEY&quot;: &quot;your-api-key-here&quot;
+      }
+    }
+  }
+}</code></pre>
+<p>For Claude Code, add it to <code>.claude/mcp.json</code> in your project or home directory with the same structure.</p>
+<p>### Step 3: Get an API Key</p>
+<p>Sign up at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a> to get a free API key. The free tier includes enough quota to run weekly research workflows on a standard product portfolio.</p>
+<p>Restart your Claude client. You should see a hammer icon or tool indicator confirming the MCP server is connected. Ask Claude: &quot;List the tools you have access to.&quot; If <code>sorftime-seller-agent</code> tools appear, you are ready.</p>
+<h2>A Real Monday Morning Prompt</h2>
+<p>Once connected, here is a prompt you can use as a starting template. It covers the four core areas of a weekly review in a single query.</p>
+<p>&gt; &quot;Run my weekly product health check. For all ASINs I am tracking:</p>
+<p>&gt;</p>
+<p>&gt; 1. Compare current BSR and price against last week. Flag changes over 10 percent.</p>
+<p>&gt; 2. Pull keyword rankings for my top 5 target terms per ASIN. Note any position shifts.</p>
+<p>&gt; 3. Check for new competitors that entered the top 20 BSR in each ASIN&#x27;s primary category.</p>
+<p>&gt; 4. Recalculate profit margins using current FBA fee estimates and my standard COGS. Highlight anything below 18 percent.</p>
+<p>&gt;</p>
+<p>&gt; Format the output as a markdown table with one row per ASIN and a one-line verdict for each.&quot;</p>
+<p>Claude executes this by calling the relevant tools in sequence, waiting for each result before making the next call, then synthesizing everything into a single structured table.</p>
+<p>The first time you run it, review the output and refine the prompt — add your specific margin thresholds, your competitor watchlist, the keywords that matter to your category. By the third week, the prompt is dialed in and Monday morning research takes the time it takes to type &quot;run my weekly product health check.&quot;</p>
+<h2>Why This Architecture Works</h2>
+<p>There is a deeper reason this approach is gaining traction among marketplace sellers. Traditional SaaS dashboards are designed for <em>human</em> data consumption — charts, tables, filters, export buttons. They optimize for a person looking at a screen and making decisions click by click.</p>
+<p>MCP flips the model. Data flows directly into the reasoning engine. Claude does not need a chart. It needs structured numbers, and it is better at spotting patterns across multiple data dimensions than a human scanning a dashboard.</p>
+<p>This also means your research scales without adding headcount. Tracking 10 ASINs or 100 ASINs is the same prompt. Claude handles the fan-out, calling tools for each ASIN and aggregating results. What changes is execution time, not your effort.</p>
+<h2>What This Does Not Do</h2>
+<p>A few honest boundaries. The MCP server provides data access and tool definitions. It does not make business decisions for you. It will not tell you which product to launch. It will not guarantee a keyword ranks or a margin holds. Market conditions shift, fees change, and data always has a freshness window.</p>
+<p>The value is in removing the repetitive assembly work so you can spend your attention on the decisions that require judgment. Think of it as moving from &quot;person who collects data&quot; to &quot;person who interprets data.&quot;</p>
+<h2>Try It Yourself</h2>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>Free API keys are available at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>. The source code is open — read it, fork it, extend the tools to match your workflow. If you build something useful, open a pull request.</p>
+<p>One prompt. Thirty seconds. No more Monday spreadsheet assembly.</p>
+
+<div class="cta">
+  <div class="cta-title">Run this playbook in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup, no credit card.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav"><a href="../posts/02-no-terminal-mcp.html">Next →</a></div>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+
+</body>
+</html>

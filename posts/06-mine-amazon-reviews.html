@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mine Amazon Reviews for Product Ideas — Automatically With AI — Amazon Seller MCP Playbook</title>
+<meta name="description" content="Mine Amazon Reviews for Product Ideas — Automatically With AI — agent-agnostic MCP playbook for Amazon sellers.">
+<meta name="keywords" content="MCP, Amazon sellers, review mining, AI agents">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-bg: #eff6ff;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: var(--hero-grad);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .meta {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+.hero .meta span { margin: 0 8px; }
+.back {
+  display: inline-block;
+  margin: 24px 0 0;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.back:hover { background: rgba(255,255,255,0.25); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.body p {
+  margin-bottom: 18px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 36px 0 14px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--fg);
+}
+.body ul, .body ol {
+  margin: 0 0 18px 24px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #be185d;
+}
+.body pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.body pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 13px;
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0f172a;
+}
+.body figure.shot img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.body figure.shot figcaption {
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.cta a:hover { opacity: 0.9; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.cta-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+footer {
+  margin-top: 48px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .nav { margin-bottom: 8px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .container { padding: 36px 16px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="icon">🔍</span>
+  <div class="num">PLAYBOOK 06</div>
+  <h1>Mine Amazon Reviews for Product Ideas — Automatically With AI</h1>
+  <div class="meta">
+    <span>Review mining</span> · <span>10 min read</span>
+  </div>
+  <a href="../index.html" class="back">← Back to all 7 playbooks</a>
+</div>
+
+<div class="container">
+  <div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="Claude Code running sorftime-seller-agent — Hidden Profit Index analysis" loading="lazy"><figcaption>Real Claude Code session running sorftime-seller-agent against Amazon US kitchen storage. Hidden Profit Index call returns top picks, profit estimates, and risk flags in one round trip.</figcaption></figure>
+<p>Your competitors&#x27; negative reviews are a goldmine of product improvement ideas. But reading thousands of reviews manually is impossible. A single best-selling product on Amazon can accumulate 5,000 reviews, each one a data point about what customers actually want — and what they cannot stand about the current options. Multiply that across five or six competitors in a category, and the volume becomes unmanageable.</p>
+<p>The information is all there. Buyers spell out exactly which features they wish existed, which materials keep failing, and which gaps in the market nobody has filled. The problem has never been a lack of signal. It has been that extracting signal from thousands of unstructured reviews requires automation.</p>
+<p>The sorftime-seller-agent is an open-source MCP tool that gives any AI agent direct access to marketplace intelligence. One of its analysis frameworks — the Review Mining methodology — is designed specifically for this problem. Instead of skimming reviews and hoping to notice patterns, an AI agent can pull review data across competitor ASINs, rank pain points by severity, and surface the specific product improvements that would actually make a difference.</p>
+<hr>
+<h2>Beyond Word-Frequency Counters</h2>
+<p>Most review analysis tools do something simple: count how often each word appears and call the most frequent ones the biggest problems. If &quot;battery&quot; appears 200 times and &quot;noise&quot; appears 150 times, they report that battery life is the top issue.</p>
+<p>This approach has a blind spot. People who mention &quot;battery&quot; may have given 4 stars — they think the battery life is slightly short but otherwise like the product. Meanwhile, 80% of the people who mention a less frequent term are leaving 1-star reviews and returning the item. A word-frequency counter would rank &quot;battery&quot; above a rarer but far more damaging issue.</p>
+<p>The Review Mining methodology uses a Pain Point Severity Index instead:</p>
+<pre><code>Severity Index = Mention Frequency Score x Rating Negative-Correlation Coefficient</code></pre>
+<p>A term that appears infrequently but is almost always tied to 1-star reviews ranks higher than a frequently mentioned term spread across 4-star and 5-star reviews. The approach catches issues that simpler tools miss — a material defect mentioned only 15 times across a category, but every single mention is a 1-star return, is exactly the kind of signal a seller needs to act on.</p>
+<hr>
+<h2>How It Works in Practice</h2>
+<p>With the sorftime-seller-agent installed and configured, a seller can ask their AI agent:</p>
+<pre><code>Pull reviews for the top 5 competitors in portable blenders on Amazon US.
+Identify the highest-severity pain points across all of them.
+Tell me which problems are category-wide versus specific to one competitor.
+For each top pain point, suggest a concrete product improvement.</code></pre>
+<p>The AI agent calls the relevant MCP tools — <code>product_reviews</code> to pull review data, <code>product_detail</code> to cross-check listing content — and runs the severity analysis. What comes back looks something like:</p>
+<ul>
+<li><strong>Leaking seal (Severity: 0.91)</strong> — Appears across 4 of 5 competitors. Every mention is 1 or 2 stars. All competitors use the same silicone gasket design. Improvement opportunity: redesigned dual-gasket sealing mechanism, or a locking lid mechanism similar to premium insulated bottles.</li>
+</ul>
+<ul>
+<li><strong>Motor burns out after 3-4 months (Severity: 0.87)</strong> — Mentioned in 12% of 1-star reviews, consistent across competitors. Suggests a category-wide motor durability ceiling at current price points. Improvement opportunity: slightly larger motor with thermal cutoff protection; the higher COGS may be justified by reduced return rate.</li>
+</ul>
+<ul>
+<li><strong>Hard to clean under blades (Severity: 0.72)</strong> — Category-wide complaint. No competitor&#x27;s listing addresses this in A+ content or product copy. Improvement opportunity: removable blade assembly for dishwasher cleaning; this becomes a differentiation point until competitors catch up.</li>
+</ul>
+<p>The third example is worth highlighting: a pain point that every competitor shares but no one has solved in their listing copy. That is a market positioning gap, not just a product gap. The first seller to address it — both in the product and in the listing — captures the buyer attention of everyone who has ever been frustrated by the problem.</p>
+<hr>
+<h2>Setting It Up</h2>
+<p>Installation is a single command.</p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>The installer sets up a Python virtual environment, installs dependencies, and generates the MCP configuration. A free Sorftime MCP key — available at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a> — is required. No credit card is needed for trial access.</p>
+<p>Once configured, the agent can call any of the 86 marketplace intelligence tools across six platforms. The review mining workflow specifically uses <code>product_reviews</code> for review data retrieval and <code>product_detail</code> for cross-referencing listing content against identified pain points.</p>
+<hr>
+<h2>What the Tool Does and Does Not Do</h2>
+<p>The methodology surfaces patterns that manual review reading would take days to find. But it has limitations worth understanding upfront:</p>
+<ul>
+<li>Review data older than six months may describe problems that have already been fixed in newer production runs. Severity analysis should weight recent reviews more heavily.</li>
+<li>Some pain points are physical constraints, not design flaws. A complaint that &quot;these headphones are not small enough&quot; does not mean there is a viable engineering solution — it may simply mean the user wants an in-ear monitor but bought over-ear headphones.</li>
+<li>ASINs with fewer than 50 total reviews carry high sample bias. The analysis is still useful as a directional indicator, but should not be treated as statistically reliable.</li>
+<li>Review manipulation on Amazon is a known issue. If a competitor has purchased a large volume of 5-star reviews, the Severity Index will underweight genuine negative signals because the overall rating distribution is distorted. Cross-check with total review count and velocity to identify suspicious patterns.</li>
+</ul>
+<p>The tool identifies opportunities. It does not validate them. A pain point with a high Severity Index tells a seller where to investigate — it does not confirm that solving that pain point is profitable or manufacturable. That judgment remains, as it should, with the seller.</p>
+<hr>
+<h2>Why This Matters</h2>
+<p>Amazon is a competitive marketplace where product differentiation is increasingly difficult. If a seller makes the same product as everyone else, with the same features, the same materials, and the same weaknesses, the only lever left is price. Racing to the bottom on price is not a strategy — it is a slow exit.</p>
+<p>Review mining changes the equation. Instead of guessing what features buyers want, a seller can extract those demands directly from the market&#x27;s own feedback. Every negative review is a specification written by a paying customer. The question is whether anyone reads it.</p>
+<hr>
+<h2>Try It</h2>
+<p>The sorftime-seller-agent is open source under the MIT license. Clone the repository, install it, and ask your AI agent to analyze a category.</p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>Then ask your AI:</p>
+<pre><code>Pull reviews for the top 5 competitors in [your category] on Amazon US.
+Rank the pain points by severity. Show me which ones are category-wide.
+For the top 3, suggest concrete product improvements.</code></pre>
+<p>Get a free MCP key at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>. Works with any MCP-compatible AI agent, including Claude Code, Codex, Cursor, and OpenClaw.</p>
+<hr>
+<h2>References</h2>
+<p>[1] Sorftime Seller Agent GitHub Repository — https://github.com/DannylydST/sorftime-seller-agent</p>
+<p>[2] Sorftime International MCP Portal — https://open-intl.sorftime.com</p>
+<p>[3] Model Context Protocol Specification — https://modelcontextprotocol.io</p>
+<hr>
+
+<div class="cta">
+  <div class="cta-title">Run this playbook in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup, no credit card.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav"><a href="../posts/04-spot-seasonal-trends.html" style="margin-right: 16px;">← Previous</a><a href="../posts/07-ppc-automation-mcp.html">Next →</a></div>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+
+</body>
+</html>
