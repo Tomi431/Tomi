@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>How Small Amazon Teams Scale With AI Agents — The 3-Person Playbook — Amazon Seller MCP Playbook</title><meta name="description" content="How Small Amazon Teams Scale With AI Agents — The 3-Person Playbook"><meta name="keywords" content="MCP,Amazon,AI agents"><meta name="author" content="Tomi (Sorftime market team)"><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>"><style>:root{--bg:#fff;--fg:#0f172a;--muted:#64748b;--accent:#2563eb;--accent-bg:#eff6ff;--border:#e2e8f0;--hero-grad:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%)}*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;line-height:1.75;color:var(--fg);background:var(--bg)}.hero{background:var(--hero-grad);color:#fff;padding:56px 24px 48px;text-align:center}.hero .icon{font-size:48px;display:block;margin-bottom:12px}.hero .num{font-size:13px;letter-spacing:.18em;font-weight:700;opacity:.85;margin-bottom:8px}.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;max-width:760px;margin-left:auto;margin-right:auto}.hero .meta{font-size:14px;opacity:.9}.back{display:inline-block;margin:24px 0 0;padding:8px 18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;color:#fff;text-decoration:none;font-size:13px;font-weight:600}.container{max-width:720px;margin:0 auto;padding:56px 24px 80px}.body p{margin-bottom:18px;color:#1f2937;font-size:16px}.body h2{font-size:22px;font-weight:800;margin:36px 0 14px;color:var(--fg)}.body ul{margin:0 0 18px 24px;color:#1f2937;font-size:16px}.body li{margin-bottom:8px}.body strong{color:var(--fg)}.body code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-family:ui-monospace,monospace;font-size:14px;color:#be185d}.body pre{background:#1e293b;color:#e2e8f0;padding:16px 20px;border-radius:8px;overflow-x:auto;margin:0 0 20px;font-size:13px;line-height:1.55}.body pre code{background:transparent;color:#e2e8f0;padding:0;font-size:13px}.body hr{border:none;border-top:1px solid var(--border);margin:32px 0}.body a{color:var(--accent);text-decoration:none}.body figure.shot{margin:32px 0;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#0f172a}.body figure.shot img{width:100%;display:block;height:auto}.body figure.shot figcaption{padding:12px 16px;background:#f8fafc;font-size:13px;color:var(--muted);text-align:center;border-top:1px solid var(--border)}.cta{background:var(--accent-bg);border:1px solid var(--accent);border-radius:10px;padding:20px 24px;margin:32px 0;text-align:center}.cta a{display:inline-block;padding:10px 22px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;margin-top:12px}.cta-title{font-size:16px;font-weight:700;color:var(--fg);margin-bottom:4px}.cta-sub{font-size:13px;color:var(--muted)}footer{margin-top:48px;padding:24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;text-align:center}footer a{color:var(--accent);text-decoration:none;font-weight:600}@media(max-width:640px){.hero{padding:40px 16px 36px}.hero h1{font-size:22px}.container{padding:36px 16px 56px}}</style></head><body><div class="hero"><span class="icon">👥</span><div class="num">PLAYBOOK 10</div><h1>How Small Amazon Teams Scale With AI Agents — The 3-Person Playbook</h1><div class="meta"><span>Case study</span> · <span>7 min read</span></div><a href="../index.html" class="back">← Back to all playbooks</a></div><div class="container"><div class="body"><figure class="shot"><img src="./pipeline-screenshot.png" alt="sorftime-seller-agent" loading="lazy"><figcaption>Claude Code running sorftime-seller-agent marketplace intelligence.</figcaption></figure>
+<p>Three people. Fourteen stores. No overtime. This isn&#x27;t a fantasy — it&#x27;s what happens when a small team equips their AI agents with marketplace data, gives them clear objectives, and gets out of their way.</p>
+<p>The bottleneck in Amazon operations has never been ambition. It&#x27;s been attention. Every store demands product research, listing optimization, ad management, and customer support — and every one of those tasks competes for the same finite hours in a day. A three-person team running two stores feels stretched. Running fourteen sounds like a staffing emergency.</p>
+<p>Here is how that math changes when AI agents join the team.</p>
+<hr>
+<h2>The Workload Problem, Quantified</h2>
+<p>A single Amazon store generating $50,000 in monthly revenue typically requires:</p>
+<ul><li><strong>Product research</strong>: 12-18 hours per week scanning categories, tracking competitors, evaluating supplier viability.</li><li><strong>Listing optimization</strong>: 6-10 hours per week updating copy, refreshing images, A/B testing titles.</li><li><strong>Ad management</strong>: 8-15 hours per week monitoring campaigns, adjusting bids, harvesting search terms.</li><li><strong>Customer support</strong>: 4-8 hours per week responding to inquiries, managing reviews, handling returns.</li></ul>
+<p>That is 30-51 hours per store, per week. Multiply by two stores and it already exceeds what three people can sustain. Multiply by fourteen and it breaks the model entirely. Unless the work changes shape.</p>
+<hr>
+<h2>How AI Agents Reshape Each Role</h2>
+<p>### Product Research</p>
+<p>Before AI: A team member opens the Amazon Best Sellers page, scrolls through categories, exports spreadsheets, manually cross-references ASINs against Sorftime for demand trends, price history, and review velocity. A single category scan takes four hours. Doing it across six categories means an entire day is gone.</p>
+<p>After AI: An MCP-enabled agent receives a prompt like &quot;scan the Kitchen &amp; Dining category for products with under 50 reviews, above $25 price point, and at least 300 monthly sales.&quot; The agent queries marketplace data through the MCP server, filters results against the criteria, and returns a ranked list with supporting metrics. The team member reviews the top candidates and makes decisions. The scan takes two minutes. The human judgment remains; the human data entry does not.</p>
+<p>### Listing Optimization</p>
+<p>Before AI: Someone reads through the top twenty listings in a subcategory, notes common keywords, writes a draft, edits it, formats it, uploads it, then waits to see what sticks.</p>
+<p>After AI: The agent pulls the top-performing listings in the target subcategory, extracts keyword frequency and structural patterns, cross-references against search volume data, and generates a listing draft aligned with what the market is actually rewarding. The team member reviews, adjusts tone, and publishes. What took half a day now takes twenty minutes.</p>
+<p>### Ad Management</p>
+<p>Before AI: A team member logs into Amazon Advertising daily, checks campaign performance, manually adjusts bids on underperforming keywords, harvests search term reports, builds negative keyword lists, and restructures campaigns as data accumulates.</p>
+<p>After AI: The agent monitors campaign performance against configurable thresholds — ACOS above 30%, spend with zero conversions over 72 hours, impressions rising but CTR falling below 0.3%. When a condition triggers, the agent surfaces the affected campaigns, the relevant data, and a recommended action. The team member approves or adjusts. The cycle runs continuously in the background instead of once per day when someone remembers to check.</p>
+<p>### Customer Support</p>
+<p>Before AI: A team member splits attention between crafting thoughtful responses and clearing the queue before it piles up. Quality or speed, pick one.</p>
+<p>After AI: The agent drafts responses by pulling order context, product details, and relevant policies from the store data. The team member approves, personalizes, and sends. Response time drops from hours to minutes. Consistency improves because every response starts from the same complete information, not from whatever the team member happened to recall at 4:30 PM.</p>
+<hr>
+<h2>A Day in the Life: Before and After</h2>
+<p>### Before AI (Three People, Two Stores)</p>
+<p>| Time | Activity |</p>
+<p>|———|—————|</p>
+<p>| 8:00 AM | Check ads dashboard, note spend spikes |</p>
+<p>| 9:00 AM | Manually pull keyword data, update bid spreadsheet |</p>
+<p>| 10:30 AM | Respond to customer inquiries from overnight |</p>
+<p>| 11:30 AM | Research one new subcategory for product expansion |</p>
+<p>| 1:00 PM | Lunch, interrupted by an urgent review notification |</p>
+<p>| 2:00 PM | Write and format listing copy for a new product |</p>
+<p>| 4:00 PM | Export competitor data, begin analysis |</p>
+<p>| 5:30 PM | Realize half the analysis isn&#x27;t done, push to tomorrow |</p>
+<p>### After AI (Three People, Fourteen Stores)</p>
+<p>| Time | Activity |</p>
+<p>|———|—————|</p>
+<p>| 8:30 AM | Review agent-generated morning brief: ad anomalies, review alerts, inventory flags across all fourteen stores |</p>
+<p>| 9:00 AM | Approve or adjust the agent&#x27;s bid recommendations for three stores with flagged campaigns |</p>
+<p>| 9:30 AM | Review five product research scans the agent ran overnight; select two candidates to advance |</p>
+<p>| 10:30 AM | Approve and personalize customer response drafts (twelve across all stores) |</p>
+<p>| 11:00 AM | Strategic work: evaluate a new market category the agent&#x27;s trend analysis surfaced |</p>
+<p>| 12:30 PM | Lunch, uninterrupted |</p>
+<p>| 1:30 PM | Review listing drafts the agent generated for the two new product candidates; make edits |</p>
+<p>| 3:00 PM | Check agent-monitored competitor price changes; adjust two listings |</p>
+<p>| 4:00 PM | End of day. No backlog, no weekend catch-up planned |</p>
+<hr>
+<h2>What the Team Stopped Doing</h2>
+<p>The efficiency gain is not just about doing the same work faster. It is about stopping entire categories of work entirely.</p>
+<p><strong>Stopped: Manual data extraction.</strong> No more copying numbers from one screen to a spreadsheet on another. The MCP server connects the agent directly to structured marketplace data.</p>
+<p><strong>Stopped: Daily dashboard check-in rituals.</strong> The agent monitors continuously and surfaces exceptions. The team checks decisions, not dashboards.</p>
+<p><strong>Stopped: Context switching between stores.</strong> The agent maintains parallel context for every store simultaneously. The team member drops into whichever store needs a decision without the cognitive cost of re-loading that store&#x27;s full state into working memory.</p>
+<p><strong>Stopped: Writing listing copy from scratch.</strong> The agent drafts. The human edits. Editing is faster than composing, and consistency across stores improves as a side effect.</p>
+<p><strong>Stopped: Reactive firefighting.</strong> When the agent catches an ad campaign crossing its ACOS threshold at 2 AM, the team sees it in the morning brief instead of discovering it three days later after the budget has already burned.</p>
+<hr>
+<h2>The Technical Foundation</h2>
+<p>The sorftime-seller-agent is an open-source MCP (Model Context Protocol) tool that gives AI agents structured access to marketplace intelligence. An AI agent — Claude, Codex, or any MCP-compatible client — connects to the MCP server and can query product data, keyword trends, competitor metrics, and category performance without a human manually navigating dashboards.</p>
+<p>Installation takes one command:</p>
+<pre><code>git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<p>After configuration, the agent has access to a growing set of marketplace data tools. A typical agent prompt for product research looks like this:</p>
+<pre><code># Example: Ask your AI agent to scan a category for opportunity gaps
+prompt = &quot;&quot;&quot;
+Scan the top 100 products in Amazon US Home &amp; Kitchen.
+Filter for:
+- Review count: under 100
+- Price: $15-$45
+- Monthly sales: at least 200 units
+- BSR trend: stable or improving over 90 days
+Return a ranked list with ASIN, price, review count, estimated monthly revenue,
+and a one-line assessment of competitive moat.
+&quot;&quot;&quot;</code></pre>
+<p>The key design choice: the agent does not make autonomous decisions that spend money or change listings. It prepares information and drafts recommendations. The human decides. This keeps the team in control while eliminating the grunt work that consumes most of the day.</p>
+<hr>
+<h2>Scaling Without Scaling Headcount</h2>
+<p>The conventional path from two stores to fourteen involves hiring — operations managers, listing specialists, ad buyers, customer support staff. That path is expensive, slow, and introduces coordination overhead that grows faster than headcount.</p>
+<p>The alternative path: keep the same three people, give them agent leverage, and let the number of stores grow without the operational burden growing in lockstep. The team&#x27;s job shifts from doing the work to directing the work. This is not automation for the sake of automation. It is the only realistic way a small team competes against larger operators without burning out or cutting corners.</p>
+<hr>
+<p><strong>Try it</strong>: <code>git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code>. Free at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>.</p>
+<hr><div class="cta"><div class="cta-title">Run this playbook in your AI agent</div><div class="cta-sub">Free Sorftime MCP key, 5-minute setup.</div><a href="https://open-intl.sorftime.com">Get the MCP Key →</a></div></div></div><footer>Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a></footer></body></html>
