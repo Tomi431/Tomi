@@ -1,1 +1,494 @@
-hello articles
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📦 Amazon Seller MCP Playbook — Tomi431</title>
+<meta name="description" content="Copy-pasteable MCP playbooks for Amazon sellers. Run marketplace intelligence workflows in your AI agent — no spreadsheets, no dashboards.">
+<meta name="keywords" content="MCP, Amazon sellers, AI agents, marketplace intelligence, product research, profit calculation, Sorftime">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #0f172a;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --accent-bg: #eff6ff;
+    --border: #e2e8f0;
+    --card-bg: #f8fafc;
+    --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.65;
+    color: var(--fg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--hero-grad);
+    color: white;
+    padding: 80px 24px 72px;
+    text-align: center;
+  }
+  .hero .emoji { font-size: 64px; margin-bottom: 16px; display: block; }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero .tagline {
+    font-size: 18px;
+    opacity: 0.92;
+    margin-bottom: 24px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero .platforms {
+    font-size: 14px;
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+  }
+  .hero .cta {
+    display: inline-block;
+    padding: 12px 28px;
+    background: white;
+    color: var(--accent);
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.15s;
+  }
+  .hero .cta:hover { transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--border); }
+  h2 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  h2 .num {
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  /* QUOTE BLOCK */
+  .quote {
+    background: var(--accent-bg);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    border-radius: 6px;
+    margin: 24px 0;
+    font-size: 16px;
+  }
+  .quote strong { color: var(--accent); }
+
+  /* BADGES */
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 20px 0 0;
+  }
+  .badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ARTICLE GRID */
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .article {
+    padding: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.15s;
+    display: block;
+  }
+  .article:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+  }
+  .article-num {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .article-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .article-meta {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* COMPARISON TABLE */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .compare th, .compare td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare th {
+    background: var(--card-bg);
+    font-weight: 700;
+    color: var(--fg);
+    font-size: 13px;
+  }
+  .compare td:first-child { color: var(--muted); }
+  .compare td.highlight {
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .compare tr:hover td { background: rgba(37, 99, 235, 0.03); }
+  .compare tr:hover td.highlight { background: var(--accent-bg); }
+
+  /* CONVERSATION */
+  .conv {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .conv .speaker {
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  .conv .speaker.you { color: var(--accent); }
+  .conv .speaker.agent { color: #7c3aed; }
+  .conv p { margin: 0 0 8px; }
+  .conv p:last-child { margin-bottom: 0; }
+  .conv em { color: var(--muted); font-style: italic; }
+
+  /* STACK TABLE */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .stack-item.featured {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+  }
+  .stack-num {
+    font-weight: 800;
+    color: var(--muted);
+    min-width: 22px;
+    font-size: 16px;
+  }
+  .stack-item.featured .stack-num { color: var(--accent); }
+  .stack-item strong { color: var(--fg); margin-right: 6px; }
+  .stack-item.featured strong a { color: var(--accent); text-decoration: none; }
+  .stack-item .why { color: var(--muted); font-size: 13px; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 64px;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+  }
+  footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  footer a:hover { text-decoration: underline; }
+  .closing {
+    margin-top: 12px;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--fg);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero { padding: 56px 16px 48px; }
+    .hero h1 { font-size: 30px; }
+    .hero .tagline { font-size: 16px; }
+    section { padding: 40px 0; }
+    h2 { font-size: 22px; }
+    .articles { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="emoji">📦</span>
+  <h1>Amazon Seller MCP Playbook</h1>
+  <p class="tagline">Run a marketplace intelligence workflow in your AI agent. No spreadsheet. No tab-switching. No dashboards.</p>
+  <p class="platforms"><strong>Amazon</strong> · <strong>Walmart</strong> · <strong>TikTok Shop</strong> · <strong>Shopee</strong> · <strong>TEMU</strong> · <strong>1688</strong></p>
+  <a href="#playbooks" class="cta">Read the 6 playbooks ↓</a>
+  <div class="badges" style="justify-content: center; margin-top: 32px;">
+    <span class="badge" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.3);">License: MIT</span>
+    <span class="badge" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.3);">Agent-Agnostic</span>
+    <span class="badge" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.3);">MCP-native</span>
+    <span class="badge" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.3);">6 Platforms</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- WHY -->
+<section>
+  <h2><span class="num">🤔</span>Why this exists</h2>
+  <p class="section-sub">Most sellers know what they want to ask. The path to the answer is what hurts.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
+    <div style="padding: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-weight: 700; color: var(--muted); margin-bottom: 8px;">❌ Before</div>
+      <p style="font-size: 14px; margin: 0;">open 5 tabs → login to SaaS → click through filters → export CSV → paste into Sheets → write formulas → scroll → decide</p>
+      <div style="margin-top: 12px; font-size: 13px; color: var(--muted); font-weight: 600;">15–45 min per question</div>
+    </div>
+    <div style="padding: 16px; background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 8px;">
+      <div style="font-weight: 700; color: var(--accent); margin-bottom: 8px;">✅ After</div>
+      <p style="font-size: 14px; margin: 0;">"What's the margin on ASIN B08N5WRWNW at $29.99 with $8.50 cost?"</p>
+      <div style="margin-top: 12px; font-size: 13px; color: var(--accent); font-weight: 700;">≈ 20 seconds</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYBOOKS -->
+<section id="playbooks">
+  <h2><span class="num">📚</span>The 6 playbooks</h2>
+  <p class="section-sub">Each one is a standalone guide. No reading order required.</p>
+
+  <div class="articles">
+    <a class="article" href="./posts/01-automating-product-research.html">
+      <div class="article-num">01</div>
+      <div class="article-title">Automating Weekly Product Research With Claude and MCP</div>
+      <div class="article-meta">📊 Product research · 8 min</div>
+    </a>
+    <a class="article" href="./posts/02-no-terminal-mcp.html">
+      <div class="article-num">02</div>
+      <div class="article-title">No Terminal? No Problem — How Non-Technical Amazon Sellers Can Use MCP Today</div>
+      <div class="article-meta">🚀 Getting started · 5 min</div>
+    </a>
+    <a class="article" href="./posts/03-calculate-amazon-profit.html">
+      <div class="article-num">03</div>
+      <div class="article-title">Calculate Amazon Profit in Seconds — Not Hours — With Your AI Agent</div>
+      <div class="article-meta">💰 Profit · 6 min</div>
+    </a>
+    <a class="article" href="./posts/04-spot-seasonal-trends.html">
+      <div class="article-num">04</div>
+      <div class="article-title">Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP</div>
+      <div class="article-meta">📈 Seasonal · 7 min</div>
+    </a>
+    <a class="article" href="./posts/05-seller-data-pipeline.html">
+      <div class="article-num">05</div>
+      <div class="article-title">From Spreadsheets to MCP — Build a Seller Data Pipeline in 5 Minutes</div>
+      <div class="article-meta">⚙️ Pipeline · 9 min</div>
+    </a>
+    <a class="article" href="./posts/06-mine-amazon-reviews.html">
+      <div class="article-num">06</div>
+      <div class="article-title">Mine Amazon Reviews for Product Ideas — Automatically With AI</div>
+      <div class="article-meta">🔍 Reviews · 10 min</div>
+    </a>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section>
+  <h2><span class="num">🆚</span>How this compares</h2>
+  <p class="section-sub">Why this format beats generic ChatGPT seller guides.</p>
+
+  <table class="compare">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Other seller guides</th>
+        <th>Seller MCP Playbook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Format</td>
+        <td>2,000-word blog posts</td>
+        <td class="highlight">Copy-pasteable prompts</td>
+      </tr>
+      <tr>
+        <td>Tooling</td>
+        <td>Generic ChatGPT tips</td>
+        <td class="highlight">Real MCP server queries</td>
+      </tr>
+      <tr>
+        <td>Data source</td>
+        <td>Hypothetical examples</td>
+        <td class="highlight">Live Sorftime data</td>
+      </tr>
+      <tr>
+        <td>Agents</td>
+        <td>One agent only</td>
+        <td class="highlight">6 agents, same prompt</td>
+      </tr>
+      <tr>
+        <td>Update cycle</td>
+        <td>Annual rewrites</td>
+        <td class="highlight">Continuous additions</td>
+      </tr>
+      <tr>
+        <td>Cost</td>
+        <td>Free reads, no tool</td>
+        <td class="highlight">Free playbook + free Sorftime tier</td>
+      </tr>
+      <tr>
+        <td>Learning curve</td>
+        <td>Read 10 articles</td>
+        <td class="highlight">Pick one, run it today</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- EXAMPLE -->
+<section>
+  <h2><span class="num">💬</span>Example conversation</h2>
+  <p class="section-sub">This is what it looks like when you run a playbook.</p>
+
+  <div class="conv">
+    <p class="speaker you">👤 You</p>
+    <p>I'm sourcing yoga mats at $8.50/piece. I want to sell at $29.99, weight 1.2lb. Should I?</p>
+  </div>
+
+  <div class="conv">
+    <p class="speaker agent">🤖 Agent <em>(calls Sorftime Profit Calculator with FBA fee estimate)</em></p>
+    <p>Gross margin: <strong>38%</strong>. Break-even: <strong>9 units/day</strong>. Return rate sensitivity: profit stays positive up to <strong>12% returns</strong>. Verdict: <strong>viable — proceed</strong>.</p>
+  </div>
+
+  <div class="conv">
+    <p class="speaker you">👤 You</p>
+    <p>Find blue ocean products in kitchen storage on Amazon US. I'm a beginner with $5K budget.</p>
+  </div>
+
+  <div class="conv">
+    <p class="speaker agent">🤖 Agent <em>(scans Hidden Profit Index, filters by low competition)</em></p>
+    <p>Here are 5 opportunities with low brand concentration, &lt;500 reviews on top listings, healthy margins. <strong>#1: Under-sink organizers</strong> — 15K monthly searches, only 3 competitors with &gt;100 reviews.</p>
+  </div>
+</section>
+
+<!-- STACK -->
+<section>
+  <h2><span class="num">🧰</span>The stack</h2>
+  <p class="section-sub">Tools behind these playbooks. Listed in order of recommendation.</p>
+
+  <div class="stack">
+    <div class="stack-item featured">
+      <span class="stack-num">1</span>
+      <span><strong><a href="https://sorftime.com">Sorftime</a></strong> <span class="why">— 86 MCP tools, 160+ dimensions, free tier</span></span>
+    </div>
+    <div class="stack-item">
+      <span class="stack-num">2</span>
+      <span><strong>Claude Code</strong> <span class="why">— first-class MCP support</span></span>
+    </div>
+    <div class="stack-item">
+      <span class="stack-num">3</span>
+      <span><strong>Cursor</strong> <span class="why">— native MCP sidebar</span></span>
+    </div>
+    <div class="stack-item">
+      <span class="stack-num">4</span>
+      <span><strong>OpenAI Codex</strong> <span class="why">— MCP server import</span></span>
+    </div>
+    <div class="stack-item">
+      <span class="stack-num">5</span>
+      <span><strong>OpenClaw</strong> <span class="why">— skill directory auto-detect</span></span>
+    </div>
+    <div class="stack-item">
+      <span class="stack-num">6</span>
+      <span><strong>Pi</strong> <span class="why">— MCP endpoint support</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <h2><span class="num">🙋</span>FAQ</h2>
+
+  <div style="margin-top: 20px;">
+    <p style="font-weight: 700; margin-bottom: 6px;">Which playbook should I start with?</p>
+    <p style="color: var(--muted); margin-bottom: 20px;">If you only have 5 minutes, read <strong>02 (No Terminal)</strong> — it gets you running in Cursor. If you have 30 minutes, <strong>05 (Data Pipeline)</strong> — biggest immediate ROI.</p>
+
+    <p style="font-weight: 700; margin-bottom: 6px;">Do I need to pay for anything?</p>
+    <p style="color: var(--muted); margin-bottom: 20px;">No. Every playbook works with Sorftime's free tier. The MCP key is free.</p>
+
+    <p style="font-weight: 700; margin-bottom: 6px;">Will these work with my AI agent?</p>
+    <p style="color: var(--muted); margin-bottom: 20px;">If your agent speaks MCP, yes. Custom agents work too via standard MCP protocol.</p>
+
+    <p style="font-weight: 700; margin-bottom: 6px;">Why GitHub Pages?</p>
+    <p style="color: var(--muted); margin-bottom: 0;">Because the playbooks are versioned. Every commit is a deploy. Every diff is a changelog. Every issue is a feature request.</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team<br>
+  <a href="https://github.com/Tomi431/articles">Source on GitHub</a> · <a href="LICENSE">MIT License</a>
+  <div class="closing">Built for sellers. By sellers.</div>
+</footer>
+
+</body>
+</html>
