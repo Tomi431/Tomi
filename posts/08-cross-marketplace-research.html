@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Marketplace Product Research Without Switching Tools — Amazon Seller MCP Playbook</title>
+<meta name="description" content="How sorftime-seller-agent lets sellers query Amazon, Walmart, TikTok Shop, and more from a single CLI.">
+<meta name="keywords" content="MCP, Amazon, Walmart, TikTok Shop, marketplace intelligence, cross-platform">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+<style>
+:root {
+  --bg: #ffffff; --fg: #0f172a; --muted: #64748b; --accent: #2563eb;
+  --accent-bg: #eff6ff; --border: #e2e8f0; --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75; color: var(--fg); background: var(--bg); -webkit-font-smoothing: antialiased;
+}
+.hero { background: var(--hero-grad); color: white; padding: 56px 24px 48px; text-align: center; }
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num { font-size: 13px; letter-spacing: 0.18em; font-weight: 700; opacity: 0.85; margin-bottom: 8px; }
+.hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.hero .meta { font-size: 14px; opacity: 0.9; }
+.back { display: inline-block; margin: 24px 0 0; padding: 8px 18px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; color: white; text-decoration: none; font-size: 13px; font-weight: 600; }
+.back:hover { background: rgba(255,255,255,0.25); }
+.container { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+.body p { margin-bottom: 18px; color: #1f2937; font-size: 16px; }
+.body h2 { font-size: 22px; font-weight: 800; margin: 36px 0 14px; color: var(--fg); }
+.body ul { margin: 0 0 18px 24px; color: #1f2937; font-size: 16px; }
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 14px; color: #be185d; }
+.body pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; margin: 0 0 20px; font-size: 13px; line-height: 1.55; }
+.body pre code { background: transparent; color: #e2e8f0; padding: 0; font-size: 13px; }
+.body hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot { margin: 32px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #0f172a; }
+.body figure.shot img { width: 100%; display: block; height: auto; }
+.body figure.shot figcaption { padding: 12px 16px; background: #f8fafc; font-size: 13px; color: var(--muted); text-align: center; border-top: 1px solid var(--border); }
+.cta { background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 10px; padding: 20px 24px; margin: 32px 0; text-align: center; }
+.cta a { display: inline-block; padding: 10px 22px; background: var(--accent); color: white; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; margin-top: 12px; }
+.cta a:hover { opacity: 0.9; }
+.cta-title { font-size: 16px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+.cta-sub { font-size: 13px; color: var(--muted); }
+footer { margin-top: 48px; padding: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 640px) { .hero { padding: 40px 16px 36px; } .hero h1 { font-size: 22px; } .container { padding: 36px 16px 56px; } }
+</style>
+</head>
+<body>
+<div class="hero">
+  <span class="icon">🌐</span>
+  <div class="num">PLAYBOOK 08</div>
+  <h1>Cross-Marketplace Product Research Without Switching Tools</h1>
+  <div class="meta"><span>Cross-marketplace research</span> · <span>7 min read</span></div>
+  <a href="../index.html" class="back">← Back to all playbooks</a>
+</div>
+<div class="container">
+  <div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="Claude Code sorftime-seller-agent" loading="lazy"><figcaption>Cross-marketplace research with sorftime-seller-agent — one query, six platforms.</figcaption></figure>
+<p>Your product sells on Amazon. You&#x27;re curious about Walmart. You&#x27;ve heard TikTok Shop is growing. But researching each platform means learning a new dashboard, new metrics, new workflows. What if one query gave you all three?</p>
+<p>That is the problem sorftime-seller-agent solves. It is an open-source MCP (Model Context Protocol) server that connects AI agents to marketplace intelligence across six platforms. Instead of logging into separate dashboards, running manual exports, and stitching spreadsheets together, sellers can ask a single question and get structured data back — from wherever the data lives.</p>
+<h2>The Multi-Platform Problem</h2>
+<p>Most ecommerce sellers start on one marketplace. Amazon is the common entry point. But as a business grows, two things happen. First, the seller starts looking at other channels — Walmart for US reach, TikTok Shop for social commerce, Shopee for Southeast Asia, TEMU for price-sensitive buyers. Second, the seller discovers that cross-platform research is brittle.</p>
+<p>Each platform has its own dashboard. Each dashboard has its own navigation logic, its own metric names, its own export formats. Comparing a product&#x27;s performance across Amazon and Walmart means logging into both, pulling separate reports, manually aligning column headers, and hoping nothing was missed. For a seller managing dozens or hundreds of SKUs, this is hours of work per week.</p>
+<p>Even within a single platform, the dashboard is opinionated about what data to show and how to show it. A seller who wants to answer a specific question — &quot;which of my Amazon listings have the highest return rate relative to their price point&quot; — often cannot answer it inside the dashboard at all. The data is there, but the interface was not designed for that query.</p>
+<h2>What MCP Changes</h2>
+<p>MCP, the Model Context Protocol, is an open standard for connecting AI agents to external data sources. Instead of an AI model answering from training data alone, an MCP server gives it structured access to live data through defined tools. The model can call a function like <code>get_product_detail</code>, receive a structured response, and reason about it.</p>
+<p>sorftime-seller-agent is an MCP server built on top of Sorftime&#x27;s data infrastructure. It exposes marketplace data as a set of tools that any MCP-compatible AI agent can call. The seller does not need to know which API endpoint returns which field. The seller asks a question, and the agent routes it to the right tool.</p>
+<p>This matters because it inverts the research workflow. Instead of the seller adapting to each platform&#x27;s interface, the interface adapts to the seller&#x27;s question. A single query format works across marketplaces, and the agent handles the platform-specific details under the hood.</p>
+<h2>What the Server Covers</h2>
+<p>sorftime-seller-agent provides data tools across six marketplaces:</p>
+<p>| Marketplace | Tools Available |</p>
+<p>|——————-|————————-|</p>
+<p>| Amazon | Product detail, keyword search, category browsing, Best Seller rankings, review analysis, profit calculation |</p>
+<p>| Walmart | Product search, category data, pricing comparison |</p>
+<p>| TikTok Shop | Product discovery, video performance, creator analytics, hashtag trends |</p>
+<p>| Shopee | Product search, category ranking, seller analysis |</p>
+<p>| TEMU | Product search, price tracking, category scanning |</p>
+<p>| 1688 | Supplier search, product sourcing, price comparison |</p>
+<p>Each tool returns structured data that the AI agent can parse directly. There is no HTML to scrape, no pagination to manage, no session timeout to worry about. The data comes back clean.</p>
+<h2>A Working Example</h2>
+<p>Consider a seller who wants to understand the competitive landscape for yoga mats. On a typical day, this seller would check Amazon Best Seller rankings in the yoga category, search Walmart for comparable listings, and browse TikTok Shop to see what styles are trending in short video content. Each step requires a different login, a different search interface, and a different export format.</p>
+<p>With sorftime-seller-agent, the seller runs one MCP client — such as Claude Code, Cursor, or any terminal-based agent — and asks a natural language question. The agent calls the relevant tools across platforms, compiles the results, and presents a comparison.</p>
+<p>Here is what the agent sees when it calls the Amazon product detail tool:</p>
+<pre><code>{
+  &quot;tool&quot;: &quot;amz_product_detail&quot;,
+  &quot;parameters&quot;: {
+    &quot;asin&quot;: &quot;B0EXAMPLE12&quot;,
+    &quot;marketplace&quot;: &quot;US&quot;,
+    &quot;fields&quot;: [&quot;title&quot;, &quot;price&quot;, &quot;rating&quot;, &quot;reviews&quot;, &quot;bsr&quot;, &quot;category_path&quot;]
+  },
+  &quot;response&quot;: {
+    &quot;title&quot;: &quot;Premium Non-Slip Yoga Mat, 6mm, Eco-Friendly TPE&quot;,
+    &quot;price&quot;: 29.99,
+    &quot;rating&quot;: 4.4,
+    &quot;reviews&quot;: 2847,
+    &quot;bsr&quot;: 12,
+    &quot;category_path&quot;: &quot;Sports &amp; Outdoors &gt; Exercise &amp; Fitness &gt; Yoga &gt; Yoga Mats&quot;,
+    &quot;estimated_monthly_sales&quot;: 8420,
+    &quot;fba_fees&quot;: 6.12,
+    &quot;net_margin_percent&quot;: 31.4,
+    &quot;top_keywords&quot;: [&quot;yoga mat&quot;, &quot;non slip yoga mat&quot;, &quot;exercise mat&quot;, &quot;thick yoga mat&quot;, &quot;eco friendly yoga mat&quot;]
+  }
+}</code></pre>
+<p>The same query pattern works for Walmart, TikTok Shop, Shopee, TEMU, and 1688. The field names are consistent where they overlap. The agent handles the differences.</p>
+<p>Here is a cross-platform price comparison script that can be run directly:</p>
+<pre><code># Cross-platform price scan for a given product keyword
+# Requires: sorftime-seller-agent installed and MCP config set
+
+import subprocess
+import json
+
+keyword = &quot;yoga mat&quot;
+platforms = [&quot;amazon&quot;, &quot;walmart&quot;, &quot;shopee&quot;, &quot;temu&quot;]
+
+results = {}
+
+for platform in platforms:
+    cmd = [
+        &quot;sorftime-cli&quot;, &quot;search&quot;,
+        &quot;--platform&quot;, platform,
+        &quot;--keyword&quot;, keyword,
+        &quot;--marketplace&quot;, &quot;US&quot;,
+        &quot;--sort&quot;, &quot;relevance&quot;,
+        &quot;--limit&quot;, &quot;10&quot;,
+        &quot;--fields&quot;, &quot;title,price,rating,reviews,url&quot;
+    ]
+    output = subprocess.run(cmd, capture_output=True, text=True)
+    results[platform] = json.loads(output.stdout)
+
+# Print comparison table
+print(f&quot;\n{&#x27;Platform&#x27;:&lt;12} {&#x27;Avg Price&#x27;:&gt;10} {&#x27;Max Price&#x27;:&gt;10} {&#x27;Min Price&#x27;:&gt;10} {&#x27;Listings&#x27;:&gt;10}&quot;)
+print(&quot;-&quot; * 55)
+for platform, data in results.items():
+    prices = [item[&quot;price&quot;] for item in data.get(&quot;items&quot;, []) if item.get(&quot;price&quot;)]
+    if prices:
+        print(f&quot;{platform:&lt;12} {sum(prices)/len(prices):&gt;10.2f} {max(prices):&gt;10.2f} {min(prices):&gt;10.2f} {len(prices):&gt;10}&quot;)</code></pre>
+<p>This script can be dropped into a daily cron job. Every morning, the seller gets a fresh cross-platform price scan without opening a single dashboard.</p>
+<h2>Setup and Configuration</h2>
+<p>sorftime-seller-agent is distributed as a Python package. Installation takes one command. Configuration is a JSON file that specifies which platforms to enable and which API credentials to use. For sellers without existing Sorftime accounts, a free tier is available at open-intl.sorftime.com that covers Amazon US data with daily quotas sufficient for individual research.</p>
+<p>The server connects to any MCP-compatible client. The most common setup is with Claude Code, which supports MCP natively. After installing the server, the seller adds a few lines to their Claude Code configuration, and the tools become available in every session. Other MCP clients like Cursor and VS Code extensions follow the same pattern.</p>
+<p>Once configured, the seller can start a conversation with any MCP client and ask marketplace questions directly. No context switching. No dashboard hopping.</p>
+<h2>Why Open Source</h2>
+<p>sorftime-seller-agent is open source under the MIT license. The code is at github.com/DannylydST/sorftime-seller-agent. The tools are defined in plain Python, and the MCP protocol is fully documented. Sellers who want to extend the server — adding a platform that is not yet covered, or customizing the data fields returned by a tool — can fork the repository and build on top of the existing structure.</p>
+<p>This is intentional. Marketplace data is not a secret sauce. The value comes from how sellers use it, and every seller has different questions. An open-source foundation means the community can add tools for niche platforms, build custom analysis pipelines, and share integrations. The core data infrastructure is maintained, but the surface area grows with the people who use it.</p>
+<h2>What sorftime-seller-agent Does Not Do</h2>
+<p>It does not replace the need to understand each marketplace. A Walmart listing strategy is different from an Amazon strategy, and data alone does not bridge that gap. It does not guarantee sales outcomes. It does not automate listing creation or inventory management. It is a research tool — it surfaces the data sellers need to make decisions, and then gets out of the way.</p>
+<p>It also does not require sellers to abandon their existing workflows. If a seller already uses spreadsheets for tracking, the agent can output CSV. If a seller uses Notion or Airtable for product databases, the agent can format data for those systems. The agent is a data pipe, not a walled garden.</p>
+<h2>Getting Started</h2>
+<p>The fastest way to try sorftime-seller-agent is to clone the repository and run the installer:</p>
+<pre><code>Try it: git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py. Free at open-intl.sorftime.com</code></pre>
+<p>After installation, the setup script walks through platform selection and MCP configuration. The whole process takes under five minutes. From there, any MCP client can start querying marketplace data directly.</p>
+<p>For sellers who have been putting off cross-platform research because the dashboard switching was too painful, this is the on-ramp. One query format. Six marketplaces. No dashboards required.</p>
+<div class="cta">
+  <div class="cta-title">Research across 6 marketplaces with one query</div>
+  <div class="cta-sub">Free Sorftime MCP key, no platform switching needed.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+<footer>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+</body>
+</html>
