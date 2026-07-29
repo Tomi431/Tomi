@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From 2 Hours of Manual Research to 5 Minutes With AI -- One Seller's MCP Transition — Amazon Seller MCP Playbook</title>
+<meta name="description" content="From 2 Hours of Manual Research to 5 Minutes With AI -- One Seller's MCP Transition — agent-agnostic MCP playbook for Amazon sellers.">
+<meta name="keywords" content="MCP, Amazon, AI agents, marketplace intelligence">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root { --bg: #ffffff; --fg: #0f172a; --muted: #64748b; --accent: #2563eb; --accent-bg: #eff6ff; --border: #e2e8f0; --card-bg: #f8fafc; --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; line-height: 1.75; color: var(--fg); background: var(--bg); -webkit-font-smoothing: antialiased; }
+.hero { background: var(--hero-grad); color: white; padding: 56px 24px 48px; text-align: center; }
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num { font-size: 13px; letter-spacing: 0.18em; font-weight: 700; opacity: 0.85; margin-bottom: 8px; }
+.hero h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; max-width: 760px; margin-left: auto; margin-right: auto; }
+.hero .meta { font-size: 14px; opacity: 0.9; }
+.back { display: inline-block; margin: 24px 0 0; padding: 8px 18px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; color: white; text-decoration: none; font-size: 13px; font-weight: 600; }
+.back:hover { background: rgba(255,255,255,0.25); }
+.container { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+.body p { margin-bottom: 18px; color: #1f2937; font-size: 16px; }
+.body h2 { font-size: 22px; font-weight: 800; margin: 36px 0 14px; color: var(--fg); }
+.body ul { margin: 0 0 18px 24px; color: #1f2937; font-size: 16px; }
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 14px; color: #be185d; }
+.body pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; margin: 0 0 20px; font-size: 13px; line-height: 1.55; }
+.body pre code { background: transparent; color: #e2e8f0; padding: 0; font-size: 13px; }
+.body hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot { margin: 32px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #0f172a; }
+.body figure.shot img { width: 100%; display: block; height: auto; }
+.body figure.shot figcaption { padding: 12px 16px; background: #f8fafc; font-size: 13px; color: var(--muted); text-align: center; border-top: 1px solid var(--border); }
+.cta { background: var(--accent-bg); border: 1px solid var(--accent); border-radius: 10px; padding: 20px 24px; margin: 32px 0; text-align: center; }
+.cta a { display: inline-block; padding: 10px 22px; background: var(--accent); color: white; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; margin-top: 12px; }
+.cta a:hover { opacity: 0.9; }
+.cta-title { font-size: 16px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+.cta-sub { font-size: 13px; color: var(--muted); }
+footer { margin-top: 48px; padding: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 640px) { .hero { padding: 40px 16px 36px; } .hero h1 { font-size: 22px; } .container { padding: 36px 16px 56px; } }
+</style>
+</head>
+<body>
+<div class="hero">
+  <span class="icon">📈</span>
+  <div class="num">PLAYBOOK 09</div>
+  <h1>From 2 Hours of Manual Research to 5 Minutes With AI -- One Seller's MCP Transition</h1>
+  <div class="meta"><span>Case study</span> · <span>6 min read</span></div>
+  <a href="../index.html" class="back">← Back to all playbooks</a>
+</div>
+<div class="container"><div class="body">
+<figure class="shot"><img src="./pipeline-screenshot.png" alt="sorftime-seller-agent" loading="lazy"><figcaption>Claude Code running sorftime-seller-agent marketplace intelligence.</figcaption></figure>
+<p>Before MCP: open browser, log into 3 tools, export CSVs, merge in Excel, format tables, write summary. Repeat daily. After MCP: type one sentence, get the answer.</p>
+<p>That sentence describes a real transition. Not theoretical. Not aspirational. A seller who manages 12 Amazon stores across three marketplaces rebuilt their entire research workflow around the sorftime-seller-agent, and the change in how their team spends time was immediate.</p>
+<hr>
+<h2>The Stack Before</h2>
+<p>The team&#x27;s morning started the same way every day. One person logged into a keyword research tool, pulled search volume data for tracked terms, and exported a CSV. A second person opened a category intelligence dashboard, grabbed the top-20 product table, and exported another CSV. A third person checked a pricing tracker for any overnight changes across monitored ASINs.</p>
+<p>The three CSVs landed in a shared folder. Someone opened Excel, merged the files, cleaned column names, built pivot tables for category trends, and wrote a summary paragraph in a Slack message. The whole process took between 90 and 120 minutes. Every weekday.</p>
+<p>Three problems compounded daily:</p>
+<ul>
+<li><strong>Latency.</strong> By the time the summary reached the team, price data was 12 hours stale. An overnight flash sale would not appear until the next pull.</li>
+<li><strong>Error propagation.</strong> One wrong filter, one forgotten date range, one broken VLOOKUP — and the entire brief was compromised. The person building the spreadsheet was not the person making decisions from it.</li>
+<li><strong>Cognitive tax.</strong> Two hours of assembly before anyone could think about what the data meant. The team started every day behind.</li>
+</ul>
+<p>The data was accurate at the source. The problem was the pipeline between the source and the decision.</p>
+<hr>
+<h2>The Stack After</h2>
+<p>The sorftime-seller-agent is an open-source MCP server. It gives any MCP-compatible AI agent — Claude Code, Codex CLI, Cursor, and others — structured access to marketplace intelligence. Once installed, the agent can query product data, keyword trends, competitor metrics, and category performance directly from the source. No exports. No spreadsheets. No copy-paste.</p>
+<p>The same team now starts their day by opening their AI agent and typing:</p>
+<pre><code>Pull a morning brief for all 12 stores.
+Flag any ASINs with BSR drops over 20% in the last 24 hours,
+any new competitor entries in tracked categories,
+and any keywords where organic ranking shifted by more than 5 positions.
+Summarize in one paragraph per store.</code></pre>
+<pre><code>
+The agent calls the relevant MCP tools, retrieves live data, cross-references the results, and returns a formatted brief. The process takes under two minutes. The team spends those two minutes reading, not assembling.
+
+What changed was not just the speed of data retrieval. It was the elimination of an entire class of work -- the work of moving data from where it lives to where it becomes useful.
+
+---
+
+## A Concrete Workflow Comparison
+
+Consider a single task: evaluating whether to enter the stainless steel water bottle category on Amazon US. Here is what it looked like before and after MCP.
+
+**Before MCP (manual workflow):**
+
+| Step | Tool | Time |
+|------|------|------|
+| Open category dashboard, navigate to Sports &amp; Outdoors | Category tool | 2 min |
+| Select subcategory, export top-100 ASIN table | Category tool | 5 min |
+| Open keyword tool, enter &quot;stainless steel water bottle&quot; | Keyword tool | 1 min |
+| Export search volume, competition, and related terms | Keyword tool | 5 min |
+| Open pricing tracker, add top-20 ASINs to watchlist | Pricing tool | 3 min |
+| Merge CSVs in Excel, clean columns, build pivot table | Excel | 15 min |
+| Manually scan for patterns: brand concentration, review barriers, price gaps | Excel + brain | 20 min |
+| Write summary and recommendation | Slack/Doc | 10 min |
+| **Total** | | **~61 minutes** |
+
+**After MCP (single prompt):**
+</code></pre>
+<pre><code>Analyze the stainless steel water bottle category on Amazon US.
+Show brand concentration in the top 50, the review count distribution
+at key price bands ($15-25, $25-40, $40+), and estimate monthly search
+volume for the top 10 category-driving keywords. Flag any products with
+under 100 reviews and above $10k estimated monthly revenue.
+Assess whether a new entrant at a $22 price point has realistic room.</code></pre>
+<pre><code>
+The agent calls multiple tools -- `category_report` for market structure, `product_search` for pricing and review data, `keyword_detail` for demand signals -- and synthesizes the results into a single response. Time elapsed: under 60 seconds.
+
+The team member who used to spend an hour on this now spends five minutes reviewing the agent&#x27;s output, asking follow-up questions for depth, and making a decision. The hour didn&#x27;t shrink. It was replaced.
+
+---
+
+## Why MCP Changes the Shape of the Work
+
+Traditional seller tools are built for humans navigating dashboards. Each tool solves one slice of the puzzle. The keyword tool handles keywords. The category tool handles categories. The pricing tracker handles prices. The seller carries those slices from one tool to the next, assembling the full picture by hand.
+
+MCP flips this model by making data accessible through a uniform protocol that any AI agent can use. The agent becomes the integration layer. Instead of the human moving between tools, the agent calls the right tools in the right sequence and returns a synthesized answer.
+
+This distinction matters because it changes who does the assembly work. Before MCP, the seller spent the first hour of every day as a data integrator. After MCP, the seller spends that hour as an analyst. Same person, same market knowledge, different starting point.
+
+The sorftime-seller-agent provides 86 marketplace intelligence functions as MCP tools. The seller does not need to know the function names or call sequences. The AI agent translates natural-language questions into tool calls, parallelizes where possible, and presents results in a readable format. The seller asks the question. The agent handles the plumbing.
+
+---
+
+## Installation
+
+The sorftime-seller-agent is open source and installs in one command. Python 3.10 or later is required.
+</code></pre>
+<pre><code>git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<pre><code>
+The installer sets up a virtual environment, installs dependencies, and configures the MCP server for the AI agent of choice. When prompted, enter a Sorftime MCP key, available free at [open-intl.sorftime.com](https://open-intl.sorftime.com). The key stays on the local machine.
+
+After installation, restart the AI agent. It auto-discovers the MCP tools. From that point forward, marketplace questions receive answers backed by live data instead of model guesses.
+
+---
+
+## What the Team Reports After 30 Days
+
+The team managing 12 stores across three marketplaces tracked results over one month.
+
+- **Category scan time** dropped from 60-90 minutes to 2-5 minutes.
+- **Daily brief assembly** was eliminated. The morning prompt replaced it.
+- **Missed signals** -- competitor entries, ranking shifts, price changes that slipped through the manual workflow -- were surfaced within the same reporting cycle.
+- **Decision velocity** improved because the gap between asking a question and having data to answer it shrank from hours to seconds.
+
+The team&#x27;s judgment did not change. Their expertise did not become less important. What changed was spending that expertise on decisions instead of data logistics.
+
+---
+
+## What to Expect
+
+The sorftime-seller-agent does not replace market knowledge. It does not make sourcing decisions, predict sales, or guarantee rankings. It provides structured access to marketplace data so sellers can spend less time gathering information and more time acting on it.
+
+The shift from manual research to MCP-powered research is not gradual. It is binary. One day the workflow is spreadsheets and tool tabs. The next day it is a single prompt. The bridge is a `git clone` and a free API key.
+
+---
+
+Try it:
+</code></pre>
+<pre><code>git clone https://github.com/DannylydST/sorftime-seller-agent &amp;&amp; cd sorftime-seller-agent &amp;&amp; python3 scripts/install.py</code></pre>
+<pre><code>
+A free MCP key is available at [open-intl.sorftime.com](https://open-intl.sorftime.com). No credit card required.
+
+---
+
+**References**
+
+[1] Sorftime Seller Agent GitHub Repository -- https://github.com/DannylydST/sorftime-seller-agent
+
+[2] Sorftime International MCP Portal -- https://open-intl.sorftime.com
+
+[3] Model Context Protocol Specification -- https://modelcontextprotocol.io
+---</code></pre>
+<div class="cta">
+  <div class="cta-title">Run this playbook in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+</div></div>
+<footer>Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a></footer>
+</body></html>
