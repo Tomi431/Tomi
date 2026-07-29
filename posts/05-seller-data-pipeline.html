@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Spreadsheets to MCP — A Seller Data Pipeline in 5 Minutes</title>
+<meta name="description" content="Replace the daily ritual of exporting Seller Central CSVs with an MCP-powered data pipeline that delivers live marketplace intelligence in seconds.">
+<meta name="keywords" content="MCP, Amazon sellers, data pipeline, AI agents, marketplace intelligence">
+<meta name="author" content="Tomi (Sorftime market team)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-bg: #eff6ff;
+  --border: #e2e8f0;
+  --card-bg: #f8fafc;
+  --hero-grad: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+.hero {
+  background: var(--hero-grad);
+  color: white;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.hero .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.hero .num {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .meta {
+  font-size: 14px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+}
+.hero .meta span { margin: 0 8px; }
+.back {
+  display: inline-block;
+  margin: 24px 0 0;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.back:hover { background: rgba(255,255,255,0.25); }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.body p {
+  margin-bottom: 18px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 36px 0 14px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--fg);
+}
+.body ul, .body ol {
+  margin: 0 0 18px 24px;
+  color: #1f2937;
+  font-size: 16px;
+}
+.body li { margin-bottom: 8px; }
+.body strong { color: var(--fg); }
+.body code {
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #be185d;
+}
+.body pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.body pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+  font-size: 13px;
+}
+.body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+.body a { color: var(--accent); text-decoration: none; }
+.body a:hover { text-decoration: underline; }
+.body figure.shot {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0f172a;
+}
+.body figure.shot img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.body figure.shot figcaption {
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cta {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+.cta a {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.cta a:hover { opacity: 0.9; }
+.cta-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.cta-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+footer {
+  margin-top: 48px;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+footer .nav { margin-bottom: 8px; }
+@media (max-width: 640px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .container { padding: 36px 16px 56px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="icon">⚙️</span>
+  <div class="num">PLAYBOOK 05</div>
+  <h1>From Spreadsheets to MCP — A Seller Data Pipeline in 5 Minutes</h1>
+  <div class="meta">
+    <span>Data pipeline</span> · <span>9 min read</span>
+  </div>
+  <a href="../index.html" class="back">← Back to all 6 playbooks</a>
+</div>
+
+<div class="container">
+  <div class="body">
+<h1>From Spreadsheets to MCP — A Seller Data Pipeline in 5 Minutes</h1>
+<p>Every morning you export data from Seller Central, open Excel, run the same pivot tables, format the same charts. By the time you are done, it is 10am and you have not made a single decision.</p>
+<p>This is the default operating rhythm for thousands of marketplace sellers. The data is there. The questions are clear. But the gap between source and insight is filled with repetitive manual work — exports, merges, formulas, formatting — none of which moves the business forward. The pipeline itself has become the bottleneck.</p>
+<p>The Model Context Protocol (MCP) offers a different model. Instead of pulling data out of platforms and pushing it through a spreadsheet assembly line, an MCP server lets an AI agent connect to the data at its source and retrieve exactly what a question demands. No exports. No pivot tables. No waiting until 10am for a usable view of the market.</p>
+<h2>The Five-Minute Setup</h2>
+<p>sorftime-seller-agent is an open-source MCP server that gives any MCP-compatible AI agent direct access to marketplace intelligence. It covers product discovery, keyword research, category trends, competitor tracking, and profitability estimation across major e-commerce platforms. The setup is a single install script:</p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent
+cd sorftime-seller-agent
+python3 scripts/install.py</code></pre>
+<p>The script registers the MCP server with the AI agent and prompts for API credentials. A free key is available at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>. After restarting the agent, all marketplace intelligence tools are available — no further configuration, no separate dashboards, no integration work.</p>
+<p>The server works with Claude Code, Cursor, Codex CLI, and any other agent that speaks MCP. The configuration is a single JSON block dropped into the agent&#x27;s MCP settings file.</p>
+<h2>What the Pipeline Delivers</h2>
+<figure class="shot">
+  <img src="./pipeline-screenshot.png" alt="Claude Code running sorftime-seller-agent — Hidden Profit Index analysis for Kitchen Storage on Amazon US" loading="lazy">
+  <figcaption>Real Claude Code session running sorftime-seller-agent against Amazon US kitchen storage. Hidden Profit Index call returns top picks, profit estimates, and risk flags in one round trip.</figcaption>
+</figure>
+<p>To make the shift concrete, compare two approaches to the same research task: evaluating whether the &quot;collapsible water bottle&quot; niche on Amazon US is worth entering.</p>
+<p><strong>The spreadsheet pipeline.</strong> Export a category report from Seller Central. Export keyword data from a research tool. Open both CSVs. Merge by ASIN in Excel. Build a pivot table for average price by material. Create a separate sheet for review velocity. Format charts. Manually scan for listings that entered the top 50 in the past 90 days. Cross-reference against estimated monthly sales. Two hours elapsed, the pivot table has a broken reference from a column re-sort, and the data is already a day old.</p>
+<p><strong>The MCP pipeline.</strong> Type into the AI agent:</p>
+<p>&gt; &quot;Find collapsible water bottles on Amazon US with under 200 reviews but monthly revenue above $30,000. Show me average price, brand concentration, and whether any new sellers entered the top 30 in the past 90 days.&quot;</p>
+<p>Behind the scenes, the agent calls multiple MCP tools — category listing, product detail, sales estimation, keyword volume — retrieves structured data from each, cross-references the results programmatically, and returns a narrative summary with supporting figures. The round trip takes seconds. The data is live. No formula errors to debug. No column sort that silently broke a VLOOKUP.</p>
+<p>The output is not just faster. It is broader. A person clicking through dashboards typically checks five to ten data points before forming a conclusion. An agent with access to the full tool set cross-references dozens of dimensions — pricing trends, review velocity, keyword demand, seasonal patterns — in parallel, catching signals that a manual scan would miss.</p>
+<h2>Query-Based vs. Pull-Based Architecture</h2>
+<p>The difference between the two approaches is architectural, not cosmetic.</p>
+<p>A spreadsheet pipeline is pull-based. Data must be exported from each source, cleaned, transformed, and loaded before analysis can begin. Every step is a manual touchpoint. Every touchpoint is a potential error — a misaligned date range, a formula that references the wrong sheet, a CSV filter that silently dropped rows. When the data changes tomorrow, the entire process repeats from scratch.</p>
+<p>An MCP pipeline is query-based. Data stays at the source. The agent retrieves exactly what the question needs, when it needs it. There are no exports to manage, no version conflicts between files downloaded on different days with different parameters, and no accumulated spreadsheet cruft from weeks of incremental patches. The question drives the retrieval. The pipeline adapts to the question, not the other way around.</p>
+<p>This eliminates several categories of failure at once. Stale data stops being a risk — every query hits live endpoints. Formula drift stops being a risk — cross-referencing happens in code, not in cell references. The cognitive overhead of maintaining spreadsheet hygiene across dozens of weekly exports disappears.</p>
+<h2>Beyond the Morning Routine</h2>
+<p>The same MCP connection handles recurring work without additional setup. Once the agent has access to the tools, a daily category snapshot is a scheduled prompt. Weekly competitor monitoring is a recurring query. An alert when a tracked product&#x27;s rank drops below a threshold is a conditional check through the same pipeline.</p>
+<p>These workflows do not require new API keys, new dashboards, or new tools. They are different prompts sent through the same MCP connection, scheduled with the agent&#x27;s built-in automation — a cron job wrapping a terminal agent session, a Claude Code loop command, or the equivalent mechanism in whichever agent the seller uses.</p>
+<p>The seller still decides what to research, which metrics matter, and what action to take. The pipeline handles retrieval, cross-referencing, and formatting. The seller handles judgment.</p>
+<hr>
+<p><strong>Start here.</strong></p>
+<pre><code class="language-bash">git clone https://github.com/DannylydST/sorftime-seller-agent
+cd sorftime-seller-agent
+python3 scripts/install.py</code></pre>
+<p>A free MCP key is available at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>. No credit card required. After installation, open the AI agent and ask a marketplace question. The tools are wired up. The spreadsheet can wait.</p>
+<hr>
+
+<div class="cta">
+  <div class="cta-title">Run this pipeline in your AI agent</div>
+  <div class="cta-sub">Free Sorftime MCP key, 5-minute setup, no credit card.</div>
+  <a href="https://open-intl.sorftime.com">Get the MCP Key →</a>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav">
+    <a href="./04-spot-seasonal-trends.html" style="margin-right: 16px;">← Previous</a>
+    <a href="./06-mine-amazon-reviews.html">Next →</a>
+  </div>
+  Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a>
+</footer>
+
+</body>
+</html>
