@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Getting Started With MCP for Amazon Sellers — A 10-Minute Setup Guide — Amazon Seller MCP Playbook</title><meta name="keywords" content="MCP,Amazon,setup,getting started,AI agents"><meta name="author" content="Tomi (Sorftime market team)"><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"><style>:root{--bg:#fff;--fg:#0f172a;--muted:#64748b;--accent:#2563eb;--accent-bg:#eff6ff;--border:#e2e8f0;--hero-grad:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%)}*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;line-height:1.75;color:var(--fg);background:var(--bg)}.hero{background:var(--hero-grad);color:#fff;padding:56px 24px 48px;text-align:center}.hero .icon{font-size:48px;display:block;margin-bottom:12px}.hero .num{font-size:13px;letter-spacing:.18em;font-weight:700;opacity:.85;margin-bottom:8px}.hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;max-width:760px;margin-left:auto;margin-right:auto}.hero .meta{font-size:14px;opacity:.9}.back{display:inline-block;margin:24px 0 0;padding:8px 18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;color:#fff;text-decoration:none;font-size:13px;font-weight:600}.container{max-width:720px;margin:0 auto;padding:56px 24px 80px}.body p{margin-bottom:18px;color:#1f2937;font-size:16px}.body h2{font-size:22px;font-weight:800;margin:36px 0 14px;color:var(--fg)}.body ul{margin:0 0 18px 24px;color:#1f2937;font-size:16px}.body li{margin-bottom:8px}.body strong{color:var(--fg)}.body code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-family:ui-monospace,monospace;font-size:14px;color:#be185d}.body pre{background:#1e293b;color:#e2e8f0;padding:16px 20px;border-radius:8px;overflow-x:auto;margin:0 0 20px;font-size:13px;line-height:1.55}.body pre code{background:transparent;color:#e2e8f0;padding:0;font-size:13px}.body hr{border:none;border-top:1px solid var(--border);margin:32px 0}.body a{color:var(--accent);text-decoration:none}.body figure.shot{margin:32px 0;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#0f172a}.body figure.shot img{width:100%;display:block;height:auto}.body figure.shot figcaption{padding:12px 16px;background:#f8fafc;font-size:13px;color:var(--muted);text-align:center;border-top:1px solid var(--border)}.cta{background:var(--accent-bg);border:1px solid var(--accent);border-radius:10px;padding:20px 24px;margin:32px 0;text-align:center}.cta a{padding:10px 22px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;margin-top:12px;display:inline-block}.cta-title{font-size:16px;font-weight:700;color:var(--fg);margin-bottom:4px}.cta-sub{font-size:13px;color:var(--muted)}footer{margin-top:48px;padding:24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;text-align:center}footer a{color:var(--accent);text-decoration:none;font-weight:600}@media(max-width:640px){.hero{padding:40px 16px 36px}.hero h1{font-size:22px}.container{padding:36px 16px 56px}}</style></head><body><div class="hero"><span class="icon">🚀</span><div class="num">PLAYBOOK 14</div><h1>Getting Started With MCP for Amazon Sellers — A 10-Minute Setup Guide</h1><div class="meta"><span>Getting Started</span> · <span>5 min read</span></div><a href="../index.html" class="back">← Back to all playbooks</a></div><div class="container"><div class="body"><figure class="shot"><img src="./A1.png" alt="Blue Ocean Product Discovery — explore untapped Amazon product opportunities with MCP" loading="lazy"><figcaption>Blue Ocean Product Discovery — explore untapped Amazon product opportunities with MCP.</figcaption></figure>
+<p>You do not need to be a developer. You do not need to understand APIs. If you can copy and paste three commands into a terminal, you can have an AI agent analyzing Amazon marketplace data in 10 minutes.</p>
+<p>This guide walks through the complete setup from zero to your first marketplace query. No prior MCP knowledge required. No configuration files to write by hand. The install script handles everything.</p>
+<hr>
+<h2>What You Need</h2>
+<p>Three things before starting:</p>
+<ul><li><strong>Python 3.10 or newer</strong>. Check by opening a terminal and typing <code>python3 —version</code>. If you need to install it, download from python.org or run <code>brew install python@3.12</code> on macOS.</li><li><strong>An MCP-compatible AI agent</strong>. Claude Code, Codex CLI, and Cursor all work. All three are free to download and use with local tools.</li><li><strong>A Sorftime account</strong>. Free to create, comes with trial credits, no credit card required.</li></ul>
+<p>That is it. No Node.js. No Docker. No database setup. No API documentation to read.</p>
+<hr>
+<h2>Step 1: Clone the Repository</h2>
+<p>Open your terminal and run these three lines, one at a time. Press Enter after each one and wait for it to finish before pasting the next.</p>
+<pre><code>git clone https://github.com/DannylydST/sorftime-seller-agent
+cd sorftime-seller-agent
+python3 scripts/install.py</code></pre>
+<p>What each line does:</p>
+<ul><li>The first line downloads the sorftime-seller-agent open source project to your computer.</li><li>The second line moves into the project folder.</li><li>The third line starts the installer that will set up dependencies, test the connection, and generate the configuration your AI agent needs.</li></ul>
+<p>The install script will run several steps automatically. It checks your Python version, installs required Python packages, and prompts you for your Sorftime MCP key. If you do not have a key yet, the next step covers that.</p>
+<hr>
+<h2>Step 2: Get Your MCP Key</h2>
+<p>When the installer asks for your MCP key, you can get one in under a minute.</p>
+<p>Open a browser and go to <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a>. Click &quot;Log In / Sign Up&quot; and register with your Google account or email. Once logged in, navigate to the <strong>MCP</strong> tab in your account dashboard. Copy the key displayed there.</p>
+<p>New accounts receive free trial credits upon registration — you can start using the tools immediately without adding a payment method. When you are ready to upgrade, Sorftime accepts PayPal.</p>
+<p>Paste the key into the installer prompt and press Enter. The script will test the connection automatically.</p>
+<pre><code>[4/7] Enter your Sorftime MCP Key: &lt;paste your key here&gt;
+[5/7] Testing Sorftime connection...
+    ✅ Connection successful</code></pre>
+<p>If the test fails, the most common cause is a partial copy — try selecting the entire key again and pasting it in one pass. The key is a single continuous string with no spaces.</p>
+<hr>
+<h2>Step 3: Restart Your AI Agent</h2>
+<p>After the installer finishes, restart your AI agent. When it comes back, it will auto-discover all the MCP tools. Confirm this by running the MCP check command:</p>
+<p><strong>Claude Code:</strong></p>
+<pre><code>/mcp</code></pre>
+<p><strong>Codex CLI:</strong></p>
+<pre><code>/mcp list</code></pre>
+<p><strong>Cursor:</strong></p>
+<p>Open the MCP panel from settings and check that <code>sorftime-seller-agent</code> shows as connected.</p>
+<p>You should see a list of 86 tools covering product search, keyword research, competitive analysis, category reporting, and profit calculations. The exact count may change as the toolset evolves.</p>
+<hr>
+<h2>Your First Query</h2>
+<p>The setup is complete. Now ask your AI agent a marketplace question. Here is a good starting point:</p>
+<pre><code>Search for yoga mats on Amazon US. Show me the top 5 products with price, review count, monthly sales estimate, and the number of sellers competing in that keyword.</code></pre>
+<p>Your AI agent will call multiple MCP tools — product search, keyword detail, category lookup — and return a structured answer. Every data point comes from live Amazon marketplace data, not from the AI&#x27;s training data.</p>
+<p>Here is what you might see (the actual numbers will differ based on current marketplace conditions):</p>
+<pre><code>Top 5 yoga mat products on Amazon US:
+
+1. B0XXXXXXX1 — $24.99 — 12,400 reviews — ~8,000 sales/mo — 3,200 competing sellers in &quot;yoga mat&quot;
+2. B0XXXXXXX2 — $32.50 — 8,200 reviews — ~5,500 sales/mo — keyword has 65% search volume growth QoQ
+3. B0XXXXXXX3 — $49.99 — 1,800 reviews — ~3,200 sales/mo — premium segment has 40% fewer competitors
+4. B0XXXXXXX4 — $19.99 — 22,000 reviews — ~12,000 sales/mo — heavy price competition in budget tier
+5. B0XXXXXXX5 — $39.95 — 4,100 reviews — ~2,100 sales/mo — travel yoga sub-niche growing 35% YoY</code></pre>
+<p>You never left your terminal. You never opened a dashboard. You typed one sentence and got actionable intelligence.</p>
+<hr>
+<h2>What You Can Do Next</h2>
+<p>Once the pipeline is live, the range of questions you can ask expands well beyond simple product search. Here are a few examples to try:</p>
+<ul><li>&quot;Find blue ocean products in kitchen storage on Amazon US — products with high demand and low review competition.&quot;</li><li>&quot;Analyze ASIN B08N5WRWNW. Show me its main traffic keywords, estimated organic versus advertising traffic split, and the features its top-rated reviews mention most frequently.&quot;</li><li>&quot;Give me a weekly monitoring report on the top 5 competitors in pet supplies. Alert me if any new ASIN enters the top 20.&quot;</li><li>&quot;Calculate estimated net margin for a product selling at $34.99 with a landed cost of $8.50 and shipping weight of 1.2 pounds.&quot;</li></ul>
+<p>Each question triggers a different combination of MCP tools. The AI agent selects the relevant tools, calls them, and synthesizes the results into a readable response.</p>
+<hr>
+<h2>Why Open Source Matters</h2>
+<p>The sorftime-seller-agent is released under the MIT license. The code is public on GitHub. You can inspect how each tool works, audit the data handling, and modify the behavior for your own workflow. There is no vendor lock-in. If the service changes in a direction that does not suit your business, you can fork the repository and maintain your own version.</p>
+<p>Being open source also means the community shapes the roadmap. Feature requests come from sellers with real problems. Every update is documented in the changelog. The tools evolve based on what users actually need, not on what a product team guessed they might want.</p>
+<hr>
+<p><strong>Try it yourself.</strong></p>
+<pre><code>git clone https://github.com/DannylydST/sorftime-seller-agent
+cd sorftime-seller-agent
+python3 scripts/install.py</code></pre>
+<p>Register for a free Sorftime account at <a href="https://open-intl.sorftime.com">open-intl.sorftime.com</a> to get your MCP key. New accounts come with trial credits — no payment required to start.</p>
+<p>After installation, open your AI agent and ask your first marketplace question. The tools are wired up. The only thing left is your next query.</p>
+<hr><div class="cta"><div class="cta-title">Set up your MCP agent in 10 minutes</div><div class="cta-sub">Free Sorftime account at open-intl.sorftime.com</div><a href="https://open-intl.sorftime.com">Get the MCP Key →</a></div></div></div><footer>Built by <a href="https://github.com/Tomi431">Tomi</a> · Sorftime market team · <a href="../index.html">All playbooks</a></footer></body></html>
