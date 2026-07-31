@@ -1,0 +1,11 @@
+title: "Seller MCP Playbook"
+description: "Copy-pasteable MCP playbooks for Amazon, Walmart, TikTok Shop, Shopee, TEMU, and 1688 sellers."
+baseurl: "/Tomi"
+url: "https://tomi431.github.io"
+theme: minima
+author:
+  name: "Tomi"
+  email: "tomi@sorftime.com"
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
