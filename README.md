@@ -29,7 +29,7 @@
 ## ⚡ Quick Start
 
 ### 1. Pick an article
-Open the piece that matches your immediate need. They're written as standalone guides — no reading order required.
+Open the piece that matches your immediate need on the [live site](https://tomi431.github.io/Tomi/). They're written as standalone guides — no reading order required.
 
 ### 2. Install the underlying tool
 Most guides use **Sorftime** for marketplace data. Free signup at [open-intl.sorftime.com](https://open-intl.sorftime.com). MCP key ready in 2 minutes.
@@ -64,8 +64,16 @@ These articles cut the loop. Every guide is **a single copy-paste prompt + a wor
 | # | Article | What You Get | Read Time |
 |---|---------|--------------|-----------|
 | 01 | [How to Turn Your AI Agent Into an Amazon Product Research Assistant](https://tomi431.github.io/Tomi/2026/07/27/ai-agent-product-research-assistant.html) | Use natural-language prompts to find products, analyze competition, and estimate profit | 8 min |
-
-*More articles are being migrated from the legacy HTML pages to the Jekyll site. Browse the [live site](https://tomi431.github.io/Tomi/) for updates.*
+| 02 | [No Terminal? No Problem — How Non-Technical Amazon Sellers Can Use MCP Today](https://tomi431.github.io/Tomi/2026/07/27/non-technical-mcp-quickstart.html) | Use MCP from Cursor in minutes, zero command-line | 5 min |
+| 03 | [Your First 5 Minutes With Sorftime MCP — A Quickstart for Amazon Sellers](https://tomi431.github.io/Tomi/2026/07/27/first-5-minutes-mcp-quickstart.html) | Verify the install, run your first query, and set up a recurring watch | 6 min |
+| 04 | [Calculate Amazon Profit in Seconds — Not Hours — With Your AI Agent](https://tomi431.github.io/Tomi/2026/07/27/profit-analysis-mcp.html) | Run any profit scenario with FBA fees, returns, ads | 6 min |
+| 05 | [Mine Amazon Reviews for Product Ideas — Automatically With AI](https://tomi431.github.io/Tomi/2026/07/27/review-mining-product-ideas.html) | Pull thousands of reviews, cluster into product ideas | 10 min |
+| 06 | [Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP](https://tomi431.github.io/Tomi/2026/07/27/seasonal-trends-mcp.html) | Find the window when demand spikes | 7 min |
+| 07 | [Reverse-Engineer Your Amazon Competition — With One AI Prompt](https://tomi431.github.io/Tomi/2026/07/27/competitor-intel-mcp.html) | Keyword strategy, pricing history, review gaps, and category viability | 8 min |
+| 08 | [Find Hidden Amazon Keywords Your Competitors Miss — With MCP](https://tomi431.github.io/Tomi/2026/07/27/hidden-keywords-mcp.html) | Surface long-tail and intent-rich keywords standard tools skip | 7 min |
+| 09 | [Blue Ocean Product Discovery — Let AI Find Your Next Winning Category](https://tomi431.github.io/Tomi/2026/07/27/blue-ocean-discovery-mcp.html) | Scan subcategories for high demand, low competition, and realistic margins | 9 min |
+| 10 | [MCP vs Traditional APIs — What Every Amazon Seller Should Know in 2026](https://tomi431.github.io/Tomi/2026/07/27/mcp-vs-traditional-apis.html) | Understand the protocol shift and when it fits your workflow | 6 min |
+| 11 | [From 2 Hours of Manual Research to 5 Minutes With AI](https://tomi431.github.io/Tomi/2026/07/27/seller-success-story-mcp-transition.html) | One seller's transition from spreadsheets to a single morning prompt | 8 min |
 
 ---
 
@@ -147,7 +155,7 @@ These articles are written as **agent-agnostic** from the first sentence. No Cla
 ## 🙋 FAQ
 
 **Q: Which article should I start with?**
-If you only have 5 minutes, read **No Terminal? No Problem** — it gets you running in Cursor. If you have 30 minutes, **Data Pipeline** — biggest immediate ROI.
+If you only have 5 minutes, read **No Terminal? No Problem** — it gets you running in Cursor. If you have 30 minutes, **From 2 Hours to 5 Minutes** — biggest immediate ROI.
 
 **Q: Do I need to pay for anything?**
 No. Every article works with **Sorftime's free tier**. The MCP key is free.
