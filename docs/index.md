@@ -2,8 +2,6 @@
 layout: default
 ---
 
-## What is this?
-
 A collection of copy-pasteable MCP playbooks for cross-border marketplace sellers.
 
 Each playbook turns a repetitive research task into a single question for your AI agent — powered by live marketplace data from Sorftime.
