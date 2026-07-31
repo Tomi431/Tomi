@@ -64,13 +64,8 @@ These articles cut the loop. Every guide is **a single copy-paste prompt + a wor
 | # | Article | What You Get | Read Time |
 |---|---------|--------------|-----------|
 | 01 | [How to Turn Your AI Agent Into an Amazon Product Research Assistant](https://tomi431.github.io/Tomi/2026/07/27/ai-agent-product-research-assistant.html) | Use natural-language prompts to find products, analyze competition, and estimate profit | 8 min |
-| 02 | [No Terminal? No Problem — How Non-Technical Amazon Sellers Can Use MCP Today](https://tomi431.github.io/Tomi/posts/02-no-terminal-mcp.html) | Use MCP from Cursor in 3 minutes, zero command-line | 5 min |
-| 03 | [Calculate Amazon Profit in Seconds — Not Hours — With Your AI Agent](https://tomi431.github.io/Tomi/posts/03-calculate-amazon-profit.html) | Run any profit scenario with FBA fees, returns, ads | 6 min |
-| 04 | [Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP](https://tomi431.github.io/Tomi/posts/04-spot-seasonal-trends.html) | Find the 4-week window when demand spikes | 7 min |
-| 05 | [From Spreadsheets to MCP — Build a Seller Data Pipeline in 5 Minutes](https://tomi431.github.io/Tomi/posts/05-seller-data-pipeline.html) | Replace your weekly spreadsheet with a one-line prompt | 9 min |
-| 06 | [Mine Amazon Reviews for Product Ideas — Automatically With AI](https://tomi431.github.io/Tomi/posts/06-mine-amazon-reviews.html) | Pull thousands of reviews, cluster into product ideas | 10 min |
 
-*More articles are being migrated to the Jekyll site. Browse the live site for the latest.*
+*More articles are being migrated from the legacy HTML pages to the Jekyll site. Browse the [live site](https://tomi431.github.io/Tomi/) for updates.*
 
 ---
 
