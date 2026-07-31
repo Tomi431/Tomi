@@ -1,6 +1,6 @@
-# 📦 Amazon Seller MCP Playbook
+# 📦 Seller MCP Playbook
 
-<p align="center"><em>Copy-pasteable MCP playbooks for Amazon sellers — no engineering required.</em></p>
+<p align="center"><em>Practical articles, case studies, and tutorials for cross-border marketplace sellers using MCP and AI agents.</em></p>
 
 <p align="center">
   <strong>Amazon</strong> · <strong>Walmart</strong> · <strong>TikTok Shop</strong> · <strong>Shopee</strong> · <strong>TEMU</strong> · <strong>1688</strong>
@@ -9,29 +9,34 @@
 > **Run a marketplace intelligence workflow in your AI agent. No spreadsheet. No tab-switching. No dashboards.**
 >
 > Agent-agnostic, MCP-native guides. Works with **Claude Code, Codex, Cursor, OpenClaw, Hermes, Pi** — any MCP-compatible AI agent.
-> 6 working playbooks. Amazon · Walmart · TikTok Shop · 1688 · Shopee · TEMU.
 >
 > **Talk to your AI. Get the answer.**
+
+## 🔗 Links
+
+- 🌐 **Live site:** [tomi431.github.io/Tomi/](https://tomi431.github.io/Tomi/)
+- 📦 **MCP tool:** [github.com/DannylydST/sorftime-seller-agent](https://github.com/DannylydST/sorftime-seller-agent)
+- 🔑 **Free MCP key:** [open-intl.sorftime.com](https://open-intl.sorftime.com)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Claude%20%7C%20Codex%20%7C%20Cursor%20%7C%20OpenClaw-purple)]()
 [![MCP](https://img.shields.io/badge/MCP-native-orange)]()
 [![Platforms](https://img.shields.io/badge/Platforms-6-blue)]()
-[![Updated](https://img.shields.io/badge/Updated-2026--07--29-brightgreen)]()
+[![Updated](https://img.shields.io/badge/Updated-2026--07--31-brightgreen)]()
 
 ---
 
 ## ⚡ Quick Start
 
-### 1. Pick a playbook
-Open the article that matches your immediate need. They're written as standalone guides — no reading order required.
+### 1. Pick an article
+Open the piece that matches your immediate need. They're written as standalone guides — no reading order required.
 
 ### 2. Install the underlying tool
 Most guides use **Sorftime** for marketplace data. Free signup at [open-intl.sorftime.com](https://open-intl.sorftime.com). MCP key ready in 2 minutes.
 
 ### 3. Copy the prompt into your AI agent
 ```bash
-# Example: Article 06 — Mine Amazon Reviews for Product Ideas
+# Example: Mine Amazon Reviews for Product Ideas
 > "Use the Sorftime MCP tools to pull all 4-star reviews for ASIN B0758XHPP4,
 >  extract common feature requests, and cluster them into 3 product idea themes."
 ```
@@ -40,7 +45,7 @@ Most guides use **Sorftime** for marketplace data. Free signup at [open-intl.sor
 
 ## 🤔 Why This Exists
 
-Most Amazon sellers know what they want to ask ("What's the margin on this product?" "Is this keyword worth targeting?"). But the path to the answer is:
+Most marketplace sellers know what they want to ask ("What's the margin on this product?" "Is this keyword worth targeting?"). But the path to the answer is:
 
 ```
 Before:  open 5 tabs → login to SaaS → click through filters → export CSV → paste into Sheets → write formulas → scroll → decide
@@ -50,32 +55,34 @@ After:   "What's the margin on ASIN B08N5WRWNW at $29.99 with $8.50 cost?"
          → answer in 20 seconds
 ```
 
-These playbooks cut the loop. Every guide is **a single copy-paste prompt + a working tool** — built for sellers who want to ship, not configure.
+These articles cut the loop. Every guide is **a single copy-paste prompt + a working tool** — built for sellers who want to ship, not configure.
 
 ---
 
-## 📚 The 6 Playbooks
+## 📚 Featured Articles
 
-| # | Playbook | What You Get | Read Time |
-|---|----------|--------------|-----------|
-| 01 | [Automating Weekly Product Research With Claude and MCP](./posts/01-automating-product-research.md) | A recurring Monday-morning product scan, fully automated | 8 min |
-| 02 | [No Terminal? No Problem — How Non-Technical Amazon Sellers Can Use MCP Today](./posts/02-no-terminal-mcp.md) | Use MCP from Cursor in 3 minutes, zero command-line | 5 min |
-| 03 | [Calculate Amazon Profit in Seconds — Not Hours — With Your AI Agent](./posts/03-calculate-amazon-profit.md) | Run any profit scenario with FBA fees, returns, ads | 6 min |
-| 04 | [Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP](./posts/04-spot-seasonal-trends.md) | Find the 4-week window when demand spikes | 7 min |
-| 05 | [From Spreadsheets to MCP — Build a Seller Data Pipeline in 5 Minutes](./posts/05-seller-data-pipeline.md) | Replace your weekly spreadsheet with a one-line prompt | 9 min |
-| 06 | [Mine Amazon Reviews for Product Ideas — Automatically With AI](./posts/06-mine-amazon-reviews.md) | Pull thousands of reviews, cluster into product ideas | 10 min |
+| # | Article | What You Get | Read Time |
+|---|---------|--------------|-----------|
+| 01 | [How to Turn Your AI Agent Into an Amazon Product Research Assistant](https://tomi431.github.io/Tomi/2026/07/27/ai-agent-product-research-assistant.html) | Use natural-language prompts to find products, analyze competition, and estimate profit | 8 min |
+| 02 | [No Terminal? No Problem — How Non-Technical Amazon Sellers Can Use MCP Today](./posts/02-no-terminal-mcp.html) | Use MCP from Cursor in 3 minutes, zero command-line | 5 min |
+| 03 | [Calculate Amazon Profit in Seconds — Not Hours — With Your AI Agent](./posts/03-calculate-amazon-profit.html) | Run any profit scenario with FBA fees, returns, ads | 6 min |
+| 04 | [Spot Seasonal Trends Before Your Competitors — Data-Driven Timing With MCP](./posts/04-spot-seasonal-trends.html) | Find the 4-week window when demand spikes | 7 min |
+| 05 | [From Spreadsheets to MCP — Build a Seller Data Pipeline in 5 Minutes](./posts/05-seller-data-pipeline.html) | Replace your weekly spreadsheet with a one-line prompt | 9 min |
+| 06 | [Mine Amazon Reviews for Product Ideas — Automatically With AI](./posts/06-mine-amazon-reviews.html) | Pull thousands of reviews, cluster into product ideas | 10 min |
+
+*More articles are being migrated to the Jekyll site. Browse the live site for the latest.*
 
 ---
 
 ## 🤖 Agent-Friendly by Design
 
-> **Same playbook, six different agents — Claude Code, Codex, Cursor, OpenClaw, Hermes, Pi.**
+> **Same prompt, six different agents — Claude Code, Codex, Cursor, OpenClaw, Hermes, Pi.**
 
-These playbooks are written as **agent-agnostic** from the first sentence. No Claude-specific prompts. No Cursor-only tricks. Every guide:
+These articles are written as **agent-agnostic** from the first sentence. No Claude-specific prompts. No Cursor-only tricks. Every guide:
 
 - **Speaks MCP** — uses the standard Model Context Protocol, no proprietary plumbing
 - **Auto-detects environment** — works on macOS, Linux, Windows
-- **Bilingual** — supports English and Chinese queries in the same playbook
+- **Bilingual** — supports English and Chinese queries in the same prompt
 - **Self-contained** — install once, run anywhere
 
 | Agent / IDE | Setup Time | How |
@@ -92,14 +99,14 @@ These playbooks are written as **agent-agnostic** from the first sentence. No Cl
 
 ## 🆚 How This Compares
 
-| | Other Seller Guides | **Amazon Seller MCP Playbook** |
+| | Other Seller Guides | **Seller MCP Playbook** |
 |---|---------------------|-------------------------------|
-| **Format** | 2,000-word blog posts | **Copy-pasteable prompts** |
+| **Format** | 2,000-word blog posts | **Copy-pasteable prompts + real data** |
 | **Tooling** | Generic ChatGPT tips | **Real MCP server queries** |
 | **Data source** | Hypothetical examples | **Live Sorftime data** |
 | **Agents** | One agent only | **6 agents, same prompt** |
-| **Update cycle** | Annual rewrites | **Continuous playbook additions** |
-| **Cost** | Free reads, no actual tool | **Free playbook + free Sorftime tier** |
+| **Update cycle** | Annual rewrites | **Continuous additions** |
+| **Cost** | Free reads, no actual tool | **Free articles + free Sorftime tier** |
 | **Learning curve** | Read 10 articles | **Pick one, run it today** |
 
 ---
@@ -129,7 +136,7 @@ These playbooks are written as **agent-agnostic** from the first sentence. No Cl
 
 ---
 
-## 🌍 Tools Behind These Playbooks
+## 🌍 Tools Behind These Articles
 
 | Tool | Role | Why It's First |
 |------|------|----------------|
@@ -144,11 +151,11 @@ These playbooks are written as **agent-agnostic** from the first sentence. No Cl
 
 ## 🙋 FAQ
 
-**Q: Which playbook should I start with?**
-If you only have 5 minutes, read **02 (No Terminal)** — it gets you running in Cursor. If you have 30 minutes, **05 (Data Pipeline)** — biggest immediate ROI.
+**Q: Which article should I start with?**
+If you only have 5 minutes, read **No Terminal? No Problem** — it gets you running in Cursor. If you have 30 minutes, **Data Pipeline** — biggest immediate ROI.
 
 **Q: Do I need to pay for anything?**
-No. Every playbook works with **Sorftime's free tier**. The MCP key is free.
+No. Every article works with **Sorftime's free tier**. The MCP key is free.
 
 **Q: Will these work with my AI agent?**
 If your agent speaks MCP, yes. The 6 supported agents are listed above. Custom agents work too via standard MCP protocol.
@@ -157,10 +164,10 @@ If your agent speaks MCP, yes. The 6 supported agents are listed above. Custom a
 Each article ends with a **Troubleshooting** section. Most failures are MCP key misconfig — fix takes 30 seconds.
 
 **Q: Why GitHub Pages?**
-Because the playbooks are versioned. Every commit is a deploy. Every diff is a changelog. Every issue is a feature request.
+Because the articles are versioned. Every commit is a deploy. Every diff is a changelog. Every issue is a feature request.
 
 **Q: Is this the same as the Sorftime Seller Agent?**
-This is the **content layer**. The Seller Agent is the **tool layer**. Same source of truth, different audience — playbooks for sellers, tools for engineers.
+This is the **content layer**. The Seller Agent is the **tool layer**. Same source of truth, different audience — articles for sellers, tools for engineers.
 
 ---
 
