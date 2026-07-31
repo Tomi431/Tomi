@@ -1,8 +1,13 @@
 ---
-layout: home
-title: "Seller MCP Playbook"
+layout: default
 ---
 
-Run a marketplace intelligence workflow in your AI agent. No spreadsheet. No tab-switching. No dashboards.
+## What is this?
 
-This playbook collection covers **Amazon, Walmart, TikTok Shop, Shopee, TEMU, and 1688** through the Model Context Protocol (MCP).
+A collection of copy-pasteable MCP playbooks for cross-border marketplace sellers.
+
+Each playbook turns a repetitive research task into a single question for your AI agent — powered by live marketplace data from Sorftime.
+
+## Latest playbook
+
+- [How to Turn Your AI Agent Into an Amazon Product Research Assistant](/Tomi/2026/07/26/ai-agent-product-research-assistant.html)
