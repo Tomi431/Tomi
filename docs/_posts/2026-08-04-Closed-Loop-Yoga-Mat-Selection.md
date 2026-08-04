@@ -385,7 +385,7 @@ yoga blocks on Amazon US. Seller: beginner, $10000, private-label.
 resistance bands on Amazon US. Seller: beginner, $10000, private-label.
 ```
 
-<img src="https://raw.githubusercontent.com/Tomi431/Tomi/main/docs/assets/images/A4.png" alt="Example output: top 100 category report showing brand concentration, average price, and review distribution." />
+<img src="https://cdn.jsdelivr.net/gh/Tomi431/Tomi@main/docs/assets/images/A4.png" alt="Example output: top 100 category report showing brand concentration, average price, and review distribution." />
 *Example output: top 100 category report showing brand concentration, average price, and review distribution.*
 
 
